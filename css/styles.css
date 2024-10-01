@@ -1,0 +1,113 @@
+/* Reset some basic styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body, html {
+    height: 100%;
+    font-family: 'Playfair Display', serif;
+    color: #ffffff;
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+}
+
+.top-left {
+    flex: 1;
+}
+
+.top-middle {
+    display: flex;
+    justify-content: space-around;
+    flex: 1;
+    text-align: center;
+}
+
+.top-right {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logo-left img, .logo-right img {
+    height: 60px;
+}
+
+.subscribe-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+    padding: 10px 20px;
+    background-color: #000;
+    border-radius: 0px;
+}
+
+.hamburger-menu {
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #fff;
+    margin: 3px 0;
+}
+
+/* Video background */
+#background-video {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+    object-fit: cover;
+}
+
+/* Main content styling */
+main {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.hero-text .small-bold {
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
+}
+
+.hero-text .big-slim {
+    font-size: 64px;
+    font-weight: 400;
+    letter-spacing: 1px;
+}
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    .hero-text .small-bold {
+        font-size: 24px;
+    }
+
+    .hero-text .big-slim {
+        font-size: 48px;
+    }
+
+    .logo-left img, .logo-right img {
+        height: 40px;
+    }
+}
