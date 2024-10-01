@@ -1,0 +1,17 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+#visualization {
+    margin: 20px auto;
+    width: 800px;
+    height: 600px;
+    background-color: white;
+    border: 1px solid #ccc;
+}
+
+circle {
+    transition: fill 0.3s;
+}
