@@ -3,55 +3,47 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    overflow-x:hidden;
 }
 
-body, html {
+html, body {
     height: 100%;
     font-family: 'Playfair Display', serif;
     color: #ffffff;
 }
 
+/* Main content styling */
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+}
+
+/* Header styles */
 header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 20px;
-    position: absolute;
+    position: fixed;
     top: 0;
     width: 100%;
     z-index: 100;
+   
 }
 
-.top-left {
+.top-left, .top-right {
     flex: 1;
-}
-
-.top-middle {
-    display: flex;
-    justify-content: space-around;
-    flex: 1;
-    text-align: center;
 }
 
 .top-right {
-    flex: 1;
     display: flex;
     justify-content: flex-end;
 }
 
-.logo-left img, .logo-right img {
-    height: 60px;
-}
-
-.subscribe-link {
-    color: #fff;
-    text-decoration: none;
-    font-size: 14px;
-    padding: 10px 20px;
-    background-color: #000;
-    border-radius: 0px;
-}
-
+/* Hamburger menu styles */
 .hamburger-menu {
     display: flex;
     flex-direction: column;
@@ -65,24 +57,33 @@ header {
     margin: 3px 0;
 }
 
-/* Video background */
-#background-video {
-    position: fixed;
-    right: 0;
-    bottom: 0;
-    min-width: 100%;
-    min-height: 100%;
-    z-index: -1;
-    object-fit: cover;
-}
-
-/* Main content styling */
-main {
-    height: 100vh;
+/* Hero Section */
+.hero-section {
+    position: relative;
+    height: 100vh; /* Full height for the hero section */
+    width: 100vw; /* Full width for the video */
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+    overflow: hidden;
+}
+
+#background-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures full width */
+    height: 100%; /* Ensures full height */
+    object-fit: cover; /* Ensures the video covers the section */
+    z-index: -1;
+}
+
+.hero-text {
+    position: relative;
+    color: white;
+    text-align: center;
+    z-index: 2;
 }
 
 .hero-text .small-bold {
@@ -97,6 +98,115 @@ main {
     letter-spacing: 1px;
 }
 
+/* Button container */
+.button-container {
+    margin-top: 20px;
+}
+
+/* Animated button styles */
+.animated-button {
+    background-color: #00000049;
+    border: 2px solid gold;
+    color: white;
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    opacity: 0;
+    animation: fadeIn 0.5s forwards;
+    transition: all 0.3s ease;
+    border-radius: 10px;
+}
+
+.animated-button:hover {
+    background-color: gold;
+    color: black;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+.animated-button:nth-child(1) {
+    animation-delay: 0.5s;
+}
+
+.animated-button:nth-child(2) {
+    animation-delay: 1s;
+}
+
+.animated-button:nth-child(3) {
+    animation-delay: 1.5s;
+}
+
+/* Horizontally Scrolling Text Section */
+.scrolling-text-section {
+    background-color: white;
+    width: 100vw; /* Full width for the scrolling section */
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 40px 0; /* Increased padding */
+    margin: 40px 0;
+}
+
+.scrolling-text {
+    display: inline-block;
+    animation: scrollText 10s linear infinite;
+    font-size: 36px; /* Increased font size */
+    font-weight: bold; /* Added bold font weight */
+    color: black;
+}
+
+@keyframes scrollText {
+    from {
+        transform: translateX(100%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+/* Second Video Section */
+.video-section {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+#background-video-2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%; /* Ensures full width */
+    height: 100%; /* Ensures full height */
+    object-fit: cover;
+    z-index: -1;
+}
+
+/* Footer and Subscription Link */
+footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.11);
+    z-index: 101;
+}
+
+.subscribe-link, .footer-text {
+    color: #fff;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.footer-text {
+    margin-left: auto;
+}
+
 /* Responsiveness */
 @media (max-width: 768px) {
     .hero-text .small-bold {
@@ -107,7 +217,7 @@ main {
         font-size: 48px;
     }
 
-    .logo-left img, .logo-right img {
-        height: 40px;
+    .scrolling-text {
+        font-size: 28px; /* Slightly smaller for mobile */
     }
 }
