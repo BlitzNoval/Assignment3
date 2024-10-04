@@ -3,57 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>..................</title>
+    <title>Pokémon Commercial Website</title>
     <link rel="stylesheet" href="./css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  
 </head>
 <body>
-    <header>
-        <div class="top-left">
-            <div class="hamburger-menu">
-                <div class="bar"></div>
-                <div class="bar"></div>
-                <div class="bar"></div>
-            </div>
+    <!-- Navigation Bar -->
+    <header id="navbar">
+        <div class="nav-left">
+            <img src="./images/Pokemon.png" alt="Pokémon Logo" class="logo">
         </div>
+        <nav> </nav>
+        <img src="./images/Loading.gif" alt="Profile Icon" class="profile-icon">
 
-        <div class="top-right">
-            <h1 class="small-bold"> Quill Jayce </h1>
-        </div>
     </header>
 
-    <main>
-        <!-- Hero Section with Background Video -->
-        <section class="hero-section">
-            <video autoplay muted loop id="background-video">
-                <source src="./images/Video1.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-            <div class="hero-text">
-                <h2 class="big-slim">CENTURIES OF HISTORY</h2>
-                <h2 class="big-slim">DECADES OF STYLE</h2>
-                <div class="button-container">
-                    <button class="animated-button">Design</button>
-                    <button class="animated-button">Theory</button>
-                    <button class="animated-button">Data Visuals</button>
-                </div>
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-background">
+            <img src="./images/Poke.jpg" alt="Background Image" id="parallax-image">
+        </div>
+        <div class="hero-content">
+            <h1>Welcome to the Pokémon World!</h1>
+            <p>Discover amazing Pokémon and enhance your journey!</p>
+            <button class="explore-btn">Explore Now</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="./images/Pokemon.png" alt="Pokémon Logo" class="footer-logo-img">
             </div>
-        </section>
-
-     
-
-        <!-- Second Video Section -->
-        <section class="video-section">
-            <video autoplay muted loop id="background-video-2">
-                <source src="./images/Video2.mp4" type="video/mp4">
-                Your browser does not support the video tag.
-            </video>
-        </section>
-    </main>
-
-    <footer>
-        <a href="#" class="subscribe-link">Subscribe To Our Newsletter</a>
-        <a href="#" class="footer-text">© September 2024 | Instagram | Github</a>
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Theory</a></li>
+                    <li><a href="#">Data Visuals</a></li>
+                    <li><a href="#">Design</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h3>Follow Us</h3>
+                <ul>
+                    <li><a href="#" class="social-icon">Instagram</a></li>
+                    <li><a href="#" class="social-icon">GitHub</a></li>
+                    <li><a href="#" class="social-icon">Twitter</a></li>
+                </ul>
+            </div>
+            <div class="footer-newsletter">
+                <h3>Subscribe to Our Newsletter</h3>
+                <form>
+                    <input type="email" placeholder="Enter your email">
+                    <button type="submit">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 Pokémon Fan Site | All Rights Reserved | 2024 September</p>
+        </div>
     </footer>
 
     <script src="./js/script.js"></script>

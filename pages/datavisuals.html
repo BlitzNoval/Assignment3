@@ -3,21 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Spotify Data Visuals</title>
+    <title>Pokémon Visualizations</title>
     <link rel="stylesheet" href="../css/data.css">
 </head>
 <body>
-    <h1>Spotify Top Tracks Data Visualizations</h1>
-    
-    <div id="circle-chart-container">
-        <h2>Circle Chart - Track Popularity</h2>
-        <svg id="circle-chart"></svg>
-    </div>
-    
-    <div id="bar-chart-container">
-        <h2>Bar Chart - Track Duration</h2>
-        <svg id="bar-chart"></svg>
-    </div>
+    <!-- Hero Section -->
+    <section id="hero">
+        <h1>Explore Pokémon Data</h1>
+        <p>Dive into interactive visualizations of Pokémon evolution chains and type distributions.</p>
+    </section>
+
+    <!-- Evolution Chain Section -->
+    <section id="evolution-section">
+        <div class="content-left">
+            <h2>About Evolution Chains</h2>
+            <p>Enter a Pokémon's name below to explore its evolutionary tree, visualized as an interactive graph.</p>
+            <input type="text" id="pokemonInput" placeholder="Enter Pokémon name">
+            <button id="fetchEvolution">Get Evolution Chain</button>
+        </div>
+        <div class="content-right">
+            <svg id="evolutionChart" width="600" height="400"></svg>
+        </div>
+    </section>
+
+    <!-- Type Distribution Section -->
+    <section id="type-section">
+        <div class="content-left">
+            <svg id="typeChart" width="600" height="400"></svg>
+        </div>
+        <div class="content-right">
+            <h2>About Type Distribution</h2>
+            <p>Explore the distribution of Pokémon types in this dynamic bubble chart. Use the controls to split or merge the bubbles.</p>
+            <button id="splitButton">Split</button>
+            <button id="mergeButton">Merge</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>Pokémon data provided by <a href="https://pokeapi.co">PokeAPI</a>.</p>
+    </footer>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>
     <script src="../js/app.js"></script>

@@ -1,0 +1,76 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    text-align: center;
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card {
+    width: 150px;
+    height: 200px;
+    perspective: 1000px; /* Create a 3D perspective */
+}
+
+.card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s; /* Smooth flip transition */
+    transform-style: preserve-3d; /* Allow child elements to be positioned in 3D space */
+}
+
+.card-front, .card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden; /* Hide the back side when facing away */
+    border: 2px solid #333;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-front {
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-back {
+    background-color: #007bff; /* Blue color for the back */
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transform: rotateY(180deg); /* Rotate back side 180 degrees */
+}
+
+.card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Scale image to cover the card */
+}
+
+/* Add this class for flipping effect */
+.card-inner.flipped {
+    transform: rotateY(180deg); /* Rotate the card when flipped */
+}
