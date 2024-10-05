@@ -1,76 +1,140 @@
-* {
-    box-sizing: border-box;
+/* General Pokedex Styles */
+body {
+    font-family: 'Arial', sans-serif;
     margin: 0;
     padding: 0;
+    background-image: url('../images/Back.jpg'); /* Background image for the full page */
+    background-size: cover; /* Ensure the image covers the entire background */
+    background-position: center; /* Center the image */
+    background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
+.pokedex-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
 }
 
-.container {
+.pokedex-frame {
+    background-color: rgba(255, 0, 0, 0.8); /* Semi-transparent red background */
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 1200px;
+    width: 95%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pokedex-header {
     text-align: center;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: bold;
+    font-size: 2em;
+    transition: transform 0.3s ease; /* Added transition for header */
 }
 
-.card-container {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
+.pokedex-content {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-gap: 30px;
 }
 
-.card {
-    width: 150px;
-    height: 200px;
-    perspective: 1000px; /* Create a 3D perspective */
-}
-
-.card-inner {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    transition: transform 0.6s; /* Smooth flip transition */
-    transform-style: preserve-3d; /* Allow child elements to be positioned in 3D space */
-}
-
-.card-front, .card-back {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    backface-visibility: hidden; /* Hide the back side when facing away */
-    border: 2px solid #333;
-    border-radius: 10px;
-    overflow: hidden;
-}
-
-.card-front {
-    background-color: #ffffff;
+.pokedex-controls {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    justify-content: center;
 }
 
-.card-back {
-    background-color: #007bff; /* Blue color for the back */
+.pokedex-button,
+.essay-button {
+    background-color: #0078ff;
     color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: rotateY(180deg); /* Rotate back side 180 degrees */
+    border: none;
+    padding: 15px;
+    margin: 10px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.3em;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Added scale transition */
+    text-align: center;
+    display: inline-block;
 }
 
-.card-back img {
+.pokedex-button:hover,
+.essay-button:hover {
+    background-color: #005bb5;
+    transform: scale(1.05); /* Slight scale effect on hover */
+}
+
+.pokedex-screen {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
     width: 100%;
-    height: 100%;
-    object-fit: cover; /* Scale image to cover the card */
+    max-height: 1000px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+    transition: max-height 0.5s ease; /* Smooth transition for height */
 }
 
-/* Add this class for flipping effect */
-.card-inner.flipped {
-    transform: rotateY(180deg); /* Rotate the card when flipped */
+.content-section {
+    display: none;
+    opacity: 0; /* Start hidden */
+    transition: opacity 0.5s ease, transform 0.3s ease; /* Added transition for opacity and scale */
+}
+
+.content-section.show {
+    display: block;
+    opacity: 1; /* Fade in */
+    transform: scale(1); /* Scale effect */
+}
+
+#essay-buttons {
+    margin-top: 20px;
+}
+
+#essay-buttons .essay-button {
+    margin-right: 10px;
+}
+
+/* PDF Viewer Section */
+#pdf-viewer {
+    margin-top: 20px;
+    display: none;
+}
+
+#pdf-viewer iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+}
+
+/* Navigation Bar Styles */
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 20px;
+    background-color: #fff;
+}
+
+.nav-left {
+    display: flex;
+    align-items: center;
+}
+
+
+nav {
+    display: flex;
+    align-items: center;
+}
+
+nav a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: #0078ff;
+    transition: color 0.3s ease;
+}
+
+nav a:hover {
+    color: #005bb5;
 }
