@@ -1,0 +1,81 @@
+    /* General Styles */
+    body {
+        font-family: 'Pokemon', sans-serif;
+        background: linear-gradient(135deg, #CC0000 0%, #FF6666 100%);
+        color: #333;
+        margin: 0;
+        padding: 0;
+    }
+
+    /* Sticky Navigation */
+    #navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 20px;
+        background-color: rgba(255, 255, 255, 0.9);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+    }
+
+    /* Section title styling */
+    .section-title {
+        text-align: center;
+        font-size: 3em;
+        color: white;
+        text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+        margin: 40px 0;
+    }
+
+    /* Card Container */
+    .card-container {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    /* Card Styles */
+    .card {
+        display: flex;
+        background-color: rgba(255, 255, 255, 0.85);
+        border-radius: 0; /* Remove border radius for full-width cards */
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        width: 100%;
+    }
+
+    .card-image {
+        flex: 1; /* Make image take 50% of the card */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card-image img {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: cover; /* Cover the entire card area */
+    }
+
+    .card-text {
+        flex: 1; /* Make text take 50% of the card */
+        padding: 20px; /* Optional: Add padding for text */
+        display: flex;
+        flex-direction: column;
+        justify-content: center; /* Center text vertically */
+    }
+
+    .card-text h2 {
+        margin-top: 0;
+        font-size: 2em;
+        color: #333;
+    }
+
+    .card-text p {
+        font-size: 1.1em;
+        color: #333;
+        margin-bottom: 0; /* Remove bottom margin for better layout */
+    }

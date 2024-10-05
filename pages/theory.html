@@ -37,44 +37,98 @@
 
                     <div class="pokedex-screen">
                         <div id="section-1" class="content-section">
-                            <h2> Reflections on the Process</h2>
-                            <p><strong>Challenges Faced:</strong> Various challenges emerged during the development process, including technical issues with data retrieval and design dilemmas. These were addressed through thorough testing and iterative design adjustments.</p>
-                            <p><strong>Learning Outcomes:</strong> The project facilitated learning in technical skills, design insights, and a deeper understanding of data storytelling and visualization techniques.</p>
-                            <p><strong>Future Improvements:</strong> Potential future enhancements include adding more data points, improving interactivity, and incorporating user feedback for continuous development.</p>
-                        
+                            <h2>Reflections</h2>
+                            <p>Content about reflections on Pokémon design theory.</p>
                         </div>
                         <div id="section-2" class="content-section" style="display:none;">
-                            <h2> Data Visualizations</h2>
-    <p><strong>Visualizations Overview:</strong> This project includes two primary visualizations:</p>
-    <ul>
-        <li><strong>Type Distribution Bubbles:</strong> A visualization that displays the distribution of Pokémon types.</li>
-        <li><strong>Evolution Chain Bar Graph:</strong> A chain graph that shows the stats of Pokémon evolutions.</li>
-    </ul>
-
-    <h2> Rationale for Each Visualization</h2>
-    <h3>Type Distribution Bubbles</h3>
-    <p><strong>Purpose:</strong> This visualization allows users to grasp the diversity of Pokémon types and their relative frequencies within the Pokémon universe.</p>
-    <p><strong>Design Choices:</strong></p>
-    <ul>
-        <li><strong>Interactivity:</strong> The inclusion of interactive elements, such as filter checkboxes, enables users to explore different Pokémon types, enhancing engagement.</li>
-        <li><strong>Animation and Aesthetics:</strong> The use of animations for smooth transitions helps create an enjoyable user experience and maintains interest.</li>
-    </ul>
-    <p><strong>Data Source:</strong> The data source (PokeAPI) was chosen for its relevance, providing up-to-date and comprehensive information about Pokémon.</p>
-
-    <h3>Evolution Chain Bar Graph</h3>
-    <p><strong>Purpose:</strong> This visualization illustrates the evolutionary process of Pokémon, showcasing their stats and evolution stages.</p>
-    <p><strong>Design Choices:</strong></p>
-    <ul>
-        <li><strong>Color Coding:</strong> Color codes were implemented for different Pokémon types, aiding in recognition and comprehension.</li>
-        <li><strong>Interactive Features:</strong> Tooltips containing images and stats enhance the user's understanding of each Pokémon during interactions.</li>
-    </ul>
-    <p><strong>Data Source:</strong> The data sources used for this visualization were selected for their significance in portraying accurate evolutionary information.</p>
-
+                            <h2>Rationale Behind Evolution Chain Visualization</h2>
+                        
+                            <h3>Introduction</h3>
+                            <p>
+                                So, the Pokémon evolution chain visualization is designed to help people understand the evolutionary paths of Pokémon. I went with a force-directed graph because it does a great job illustrating the connections and stages of evolution for selected Pokémon.
+                            </p>
+                        
+                            <h3>Data Acquisition and Structuring</h3>
+                            <p>
+                                For the evolution chain data, I turned to the PokéAPI, which provides detailed evolutionary information. The process starts by fetching a Pokémon's species details and then getting its evolution chain. Structuring this data was interesting because it involved navigating the hierarchical nature of evolutionary chains, which meant doing some recursive data fetching and processing.
+                            </p>
+                            <p>
+                                In this visualization, each node represents an individual Pokémon, while the links illustrate their evolutionary connections. To enhance the experience, I made sure each node is packed with extra data, like stats and images, so users get a full view when interacting with the visualization.
+                            </p>
+                        
+                            <h3>Design Choices</h3>
+                            <p>
+                                I chose a force-directed graph because it’s perfect for showing hierarchical and relational data. This type of graph naturally illustrates the evolutionary relationships between Pokémon, using spatial distribution to show the evolutionary hierarchy.
+                            </p>
+                            <p>
+                                By using D3's force simulation, I created a dynamic and interactive experience. Users can drag the nodes around to explore different views of the network. Plus, including Pokémon sprites makes it easier for users to quickly identify the Pokémon within the chain.
+                            </p>
+                            
+                            <h3>Challenges</h3>
+                
+                            <p>
+                                The development of this visualization brought its own set of coding challenges, particularly with D3.js and API integration. One major issue was managing asynchronous data fetching effectively. I had to make multiple API calls to gather all the relevant evolutionary information, and ensuring that this data loaded in the correct order was crucial. This involved setting up a promise chain to handle the asynchronous nature of the requests and ensure all nodes were populated correctly.
+                            </p>
+                            <p>
+                                The development of this visualization came with its own set of challenges. One of the biggest issues was managing the asynchronous data fetching. Since I was dealing with a hierarchical structure, ensuring that the data loaded in the correct order and was properly linked.
+                            <p>
+                                Additionally, creating an intuitive user experience with interactivity was tricky. I had to carefully handle user interactions, ensuring that dragging nodes did not cause any confusion with zooming and panning. The tooltip implementation also required fine-tuning to make sure they displayed relevant information without blocking user interaction with the graph. Balancing these aspects took considerable testing and iteration.
+                            </p>
+                
+                        
+                            <h3>Reflection</h3>
+                            <p>
+                                Looking back on this visualization, I found that managing asynchronous data fetching was a bit of a challenge, but it all came together nicely with the force simulation. Overall, this project demonstrates how interactive graphics can be powerful tools in educational contexts. In the future, I’d love to integrate user feedback mechanisms to continuously refine the user experience.
+                            </p>
                         </div>
+                        
                         <div id="section-3" class="content-section" style="display:none;">
                             <h2>Prep Work</h2>
-                            <p>Details on the preparation and research for Pokémon theory.</p>
+                        
+                            <h3>Introduction</h3>
+                            <p>
+                                So, the idea behind the Pokémon type distribution visualization is to give users an interactive and intuitive way to understand the balance and prevalence of different Pokémon types in the dataset. I decided to use a bubble chart for this because it really allows users to explore these distributions effectively and see the frequency of each type.
+                            </p>
+                        
+                            <h3>Data Collection and Processing</h3>
+                            <p>
+                                To kick things off, I needed to find the right data source. I chose the PokéAPI since it has comprehensive and up-to-date Pokémon data. I fetched data for 1000 Pokémon, which was a deliberate choice to ensure we get a wide representation of types.
+                            </p>
+                            <p>
+                                Once I had the data, I moved on to processing it. This meant parsing each Pokémon's type information. I created a <code>typeCount</code> dictionary to tally how many times each type appears. Additionally, I built a <code>typeDetails</code> object to store detailed information about each Pokémon, including their names and sprites. This extra info really enhances the tooltip interactions, giving users deeper insights into the types.
+                            </p>
+                        
+                            <h3>Design Rationale</h3>
+                            <p>
+                                I opted for a bubble chart because it visually conveys quantitative information through size, which is super intuitive for users. The radius of each bubble corresponds to the number of Pokémon of that type, and I calculated it using a square root scale to make sure even the smaller counts are visible.
+                            </p>
+                            <p>
+                                For color differentiation, I used <code>d3.schemeCategory10</code>. This choice enhances the clarity of the visualization, making it easier for users to distinguish between different types. I picked this color scheme because it’s distinct and visually appealing.
+                            </p>
+                        
+                            <h3>Interactivity and User Experience</h3>
+                            <p>
+                                Interactivity is really key to this visualization. I included checkboxes that let users filter the types displayed, so they can tailor the visualization to their interests. Tooltips also provide additional info about each type, which enhances the user experience by giving insights without cluttering the chart.
+                            </p>
+
+                            <h3>Challenges</h3>
+                            <p>
+                                Throughout the development of this visualization, I encountered several coding challenges, particularly related to D3.js and API interactions. One of the first hurdles was correctly parsing the data from the PokéAPI. The API returned a large dataset, and ensuring I extracted the correct type information without errors required careful attention to the structure of the JSON response. I had to familiarize myself with the API documentation to properly navigate its hierarchical data structure.
+                            </p>
+                            <p>
+                                Working with D3.js also posed challenges, especially in rendering the bubble chart efficiently. Managing the scale of the bubbles was tricky; I needed to use a square root scale to ensure smaller types were still represented adequately, which required some trial and error to get right. I also faced performance issues when rendering all 1000 Pokémon. At times, the visualization would lag or freeze, especially on less powerful devices. I ended up implementing a throttling mechanism to limit the number of updates rendered in real-time, improving overall performance.
+                            </p>
+                            <p>
+                                Additionally, I struggled with maintaining the interactivity of the chart while ensuring that it remained user-friendly. The checkboxes for filtering types sometimes interfered with tooltip display, leading to confusion. I had to carefully structure the event listeners to ensure that the interactions didn’t clash and that the tooltips provided clear and relevant information without overwhelming the user.
+                            </p>
+                            
+                        
+                            <h3>Reflection</h3>
+                            <p>
+                                Looking back on the development of this visualization, I think integrating dynamic data fetching and real-time updates was a significant achievement. However, I did face some challenges, like optimizing performance when handling large datasets and ensuring smooth transitions. Moving forward, I’d love to explore more complex interactions, like animations that reveal historical trends in type distributions.
+                            </p>
                         </div>
+                        
                         <div id="section-essay" class="content-section" style="display:none;">
                             <h2>Essay</h2>
                             <p>Your essay on Pokémon design theory will be displayed here.</p>
