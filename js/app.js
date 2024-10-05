@@ -73,6 +73,7 @@ function createFilterCheckboxes(typeCount) {
 }
 
 // Draw type distribution bubbles
+// Draw type distribution bubbles
 function drawTypeDistributionChart(typeCount, typeDetails) {
     typeChart.selectAll("*").remove(); // Clear previous chart
 
@@ -96,16 +97,14 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
         .on("tick", ticked);
 
     function ticked() {
-        const bubbles = typeChart.selectAll("circle")
+        const bubbles = typeChart.selectAll("g")
             .data(nodes);
 
-        bubbles.enter()
-            .append("circle")
+        const bubbleEnter = bubbles.enter().append("g");
+
+        bubbleEnter.append("circle")
             .attr("r", d => radiusScale(d.count))
             .attr("fill", d => color(d.type))
-            .merge(bubbles)
-            .attr("cx", d => d.x)
-            .attr("cy", d => d.y)
             .on("mouseover", (event, d) => {
                 const details = typeDetails[d.type];
                 const samplePokemons = details.pokemons.slice(0, 5);
@@ -154,7 +153,17 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
                 }
             });
 
+        bubbleEnter.append("text")
+            .attr("dy", "-1em")
+            .attr("text-anchor", "middle")
+            .text(d => d.type)
+            .style("font-size", "12px")
+            .style("fill", "#333");
+
         bubbles.exit().remove();
+
+        bubbles.merge(bubbleEnter)
+            .attr("transform", d => `translate(${d.x},${d.y})`);
     }
 
     createFilterCheckboxes(typeCount);
@@ -168,7 +177,6 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
         }
     `);
 }
-
 
 // Evolution chain fetching and visualization
 async function fetchEvolutionChain(pokemonName) {

@@ -6,7 +6,9 @@
     <title>Pokémon Data Explorer</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/data.css">
-    <script src="../js/script.js"></script>
+    <script src="../js/script.js" defer></script>
+    <script src="../js/app.js" defer></script>
+    <script src="https://d3js.org/d3.v7.min.js"></script>
 </head>
 <body>
     <header id="navbar">
@@ -33,7 +35,15 @@
                     <button id="fetchEvolution" class="poke-button">Explore</button>
                 </div>
                 <div class="filler-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit dui in sapien scelerisque, a luctus magna tincidunt.</p>
+                    <h3>Evolution Chain Chart</h3>
+                    <p>This chart allows you to visualize the evolution chain of any specific Pokémon. By entering a Pokémon's name, the chart will display its evolutionary stages, showing how it evolves over time.</p>
+                    <p>Here's how you can use the chart:</p>
+                    <ul>
+                        <li>Hover over each Pokémon to see detailed stats like HP, Attack, Defense, and more.</li>
+                        <li>Click on a Pokémon to highlight it along with its direct evolutions, making it easy to track its evolutionary line.</li>
+                        <li>Drag Pokémon nodes around to explore different positions while the chart dynamically adjusts the connections between evolutions.</li>
+                    </ul>
+                    <p>This chart helps you discover how Pokémon evolve and the relationships between different stages of their growth.</p>
                 </div>
             </div>
             <div class="content-right">
@@ -50,14 +60,20 @@
                 </div>
             </div>
             <div class="content-right">
+                <div id="filters"></div>
                 <h2>Type Distribution</h2>
                 <p>Explore the balance of Pokémon types in this dynamic chart!</p>
-                <div class="button-group">
-                    <button id="splitButton" class="poke-button">Split Types</button>
-                    <button id="mergeButton" class="poke-button">Merge Types</button>
-                </div>
+                
                 <div class="filler-text">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit dui in sapien scelerisque, a luctus magna tincidunt.</p>
+                    <h3>Type Distribution Chart</h3>
+                    <p>This chart visualizes the distribution of Pokémon types in a bubble format. Each bubble represents a Pokémon type, with the size of the bubble indicating how many Pokémon belong to that type.</p>
+                    <p>You can interact with the chart in the following ways:</p>
+                    <ul>
+                        <li>Hover over a bubble to see more details about the type, including a sample of Pokémon that belong to it.</li>
+                        <li>Click on a bubble to highlight it and enlarge its size. Clicking again will return it to its original size.</li>
+                        <li>Filter types by using the checkboxes provided. Selecting a checkbox will display only the types you are interested in.</li>
+                    </ul>
+                    <p>This interactive chart allows you to explore the different Pokémon types and learn how common each type is in the Pokémon world.</p>
                 </div>
             </div>
         </section>
@@ -66,8 +82,5 @@
     <footer>
         <p>Powered by <a href="https://pokeapi.co">PokeAPI</a> | © 2024 Pokémon Data Explorer</p>
     </footer>
-
-    <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="../js/app.js"></script>
 </body>
 </html>
