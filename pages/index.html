@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokémon Commercial Website</title>
     <link rel="stylesheet" href="../css/styles.css">
-  
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -13,9 +12,15 @@
         <div class="nav-left">
             <img src="../images/Pokemon.png" alt="Pokémon Logo" class="logo">
         </div>
-        <nav> </nav>
+        <nav>
+            <ul id="dynamic-nav">
+                <li><a href="#" class="active">Home</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Data Visuals</a></li>
+                <li><a href="#">Theory</a></li>
+            </ul>
+        </nav>
         <img src="../images/Loading.gif" alt="Profile Icon" class="profile-icon">
-
     </header>
 
     <!-- Hero Section -->
@@ -30,41 +35,20 @@
         </div>
     </section>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <img src="../images/Pokemon.png" alt="Pokémon Logo" class="footer-logo-img">
-            </div>
-            <div class="footer-links">
-                <h3>Quick Links</h3>
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Theory</a></li>
-                    <li><a href="#">Data Visuals</a></li>
-                    <li><a href="#">Design</a></li>
-                </ul>
-            </div>
-            <div class="footer-social">
-                <h3>Follow Us</h3>
-                <ul>
-                    <li><a href="https://www.instagram.com/liamjm__/?locale=gb" class="social-icon">Instagram</a></li>
-                    <li><a href="#" class="social-icon">GitHub</a></li>
-                    <li><a href="#" class="social-icon">Twitter</a></li>
-                </ul>
-            </div>
-            <div class="footer-newsletter">
-                <h3>Subscribe to Our Newsletter</h3>
-                <form>
-                    <input type="email" placeholder="Enter your email">
-                    <button type="submit">Subscribe</button>
-                </form>
+    <!-- About Section -->
+    <section class="about-section">
+        <div class="about-content">
+            <img src="../images/Dig.png" alt="About Image" class="about-image">
+            <div class="about-text">
+                <h2>About Me</h2>
+                <p>Welcome to my Pokémon fan site! Here, we dive into the magical world of Pokémon, exploring the depths of their stats, evolutions, and much more. Whether you're a longtime fan or new to the Pokémon world, this site is the perfect place to enhance your knowledge and have fun!</p>
             </div>
         </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 Pokémon Fan Site | All Rights Reserved | 2024 September</p>
-        </div>
-    </footer>
+    </section>
+
+    
+
+
 
     <script src="../js/script.js"></script>
 </body>

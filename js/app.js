@@ -6,10 +6,13 @@ const selectedTypes = new Set();
 const tooltip = d3.select("body").append("div")
     .attr("class", "tooltip")
     .style("position", "absolute")
-    .style("background", "#f9f9f9")
-    .style("border", "1px solid #ccc")
+    .style("background", "rgba(255, 255, 255, 0.9)")
+    .style("border", "1px solid #ddd")
+    .style("border-radius", "5px")
+    .style("box-shadow", "0 0 10px rgba(0, 0, 0, 0.1)")
     .style("padding", "10px")
-    .style("display", "none");
+    .style("display", "none")
+    .style("pointer-events", "none");
 
 // Fetch Pokémon types and evolution data
 async function fetchPokemonData() {
@@ -29,7 +32,17 @@ async function fetchTypeDistribution() {
         data.types.forEach(type => {
             const typeName = type.type.name;
             typeCount[typeName] = (typeCount[typeName] || 0) + 1;
-            typeDetails[typeName] = typeDetails[typeName] || data;
+            if (!typeDetails[typeName]) {
+                typeDetails[typeName] = {
+                    count: 0,
+                    pokemons: []
+                };
+            }
+            typeDetails[typeName].count++;
+            typeDetails[typeName].pokemons.push({
+                name: data.name,
+                sprite: data.sprites.front_default
+            });
         });
     }
 
@@ -94,8 +107,23 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
             .attr("cx", d => d.x)
             .attr("cy", d => d.y)
             .on("mouseover", (event, d) => {
+                const details = typeDetails[d.type];
+                const samplePokemons = details.pokemons.slice(0, 5);
+                let pokemonList = samplePokemons.map(p => `
+                    <div style="display: inline-block; text-align: center; margin: 5px;">
+                        <img src="${p.sprite}" alt="${p.name}" width="40"><br>
+                        <span style="font-size: 12px;">${p.name}</span>
+                    </div>
+                `).join('');
+
                 tooltip.style("display", "block")
-                    .html(`Type: ${d.type} <br> Count: ${d.count} <br> <img src="${typeDetails[d.type].sprites.front_default}" alt="${d.type}" width="50">`);
+                    .html(`
+                        <strong style="font-size: 16px; color: ${color(d.type)};">${d.type.toUpperCase()}</strong><br>
+                        <span style="font-size: 14px;">Count: ${d.count}</span><br><br>
+                        <strong>Includes:</strong><br>
+                        ${pokemonList}<br>
+                        <span style="font-size: 12px; color: #666;">(and ${details.count - 5} more...)</span>
+                    `);
             })
             .on("mousemove", (event) => {
                 tooltip.style("left", (event.pageX + 5) + "px")
@@ -103,13 +131,44 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
             })
             .on("mouseout", () => {
                 tooltip.style("display", "none");
+            })
+            .on("click", (event, d) => {
+                // Toggle selection
+                const isSelected = d3.select(event.currentTarget).classed("selected");
+                d3.select(event.currentTarget).classed("selected", !isSelected);
+                
+                if (!isSelected) {
+                    // Grow and change color when selected
+                    d3.select(event.currentTarget)
+                        .transition()
+                        .duration(300)
+                        .attr("r", radiusScale(d.count) * 1.2)
+                        .attr("fill", d3.color(color(d.type)).brighter(0.5));
+                } else {
+                    // Return to original size and color when deselected
+                    d3.select(event.currentTarget)
+                        .transition()
+                        .duration(300)
+                        .attr("r", radiusScale(d.count))
+                        .attr("fill", color(d.type));
+                }
             });
 
         bubbles.exit().remove();
     }
 
     createFilterCheckboxes(typeCount);
+
+    // Add CSS for hover effect
+    d3.select("head").append("style").text(`
+        circle:hover {
+            stroke: #333;
+            stroke-width: 2px;
+            cursor: pointer;
+        }
+    `);
 }
+
 
 // Evolution chain fetching and visualization
 async function fetchEvolutionChain(pokemonName) {
@@ -126,10 +185,10 @@ async function fetchEvolutionChain(pokemonName) {
     }
 }
 
-function drawEvolutionChain(chain) {
+async function drawEvolutionChain(chain) {
     evolutionChart.selectAll("*").remove(); // Clear previous chart
 
-    const width = 800, height = 600;
+    const width = 800, height = 200;
     const svg = evolutionChart.append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -141,25 +200,33 @@ function drawEvolutionChain(chain) {
     const nodes = [];
     const links = [];
 
-    function buildChain(node, parent = null, depth = 0) {
+    async function buildChain(node, parent = null, depth = 0) {
+        const pokemonId = getPokemonId(node.species.url);
+        const pokemonData = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonId}`).then(res => res.json());
+
         nodes.push({ 
             name: node.species.name, 
-            url: node.species.url,
+            id: pokemonId,
+            stats: pokemonData.stats,
             depth: depth
         });
+
         if (parent) {
             links.push({ source: parent, target: node.species.name });
         }
-        node.evolves_to.forEach(e => buildChain(e, node.species.name, depth + 1));
+
+        for (const e of node.evolves_to) {
+            await buildChain(e, node.species.name, depth + 1);
+        }
     }
 
-    buildChain(chain);
+    await buildChain(chain);
 
     const simulation = d3.forceSimulation(nodes)
         .force("link", d3.forceLink(links).id(d => d.name).distance(150))
-        .force("charge", d3.forceManyBody().strength(-500))
-        .force("x", d3.forceX(d => width / 2 + (d.depth - 1) * 200).strength(0.5))
-        .force("y", d3.forceY(height / 2).strength(0.1));
+        .force("charge", d3.forceManyBody().strength(-200))
+        .force("x", d3.forceX((d, i) => 100 + i * 150).strength(1))
+        .force("y", d3.forceY(height / 2).strength(1));
 
     const link = svg.append("g")
         .attr("class", "links")
@@ -198,17 +265,29 @@ function drawEvolutionChain(chain) {
             .on("end", dragended));
 
     node.append("circle")
-        .attr("r", 30)
+        .attr("r", 40) // Increase circle size
         .attr("fill", "white")
         .attr("stroke", "#666")
-        .attr("stroke-width", 2);
+        .attr("stroke-width", 2)
+        .on("mouseover", function() {
+            d3.select(this).transition()
+                .duration(300)
+                .attr("r", 45)
+                .attr("fill", "#ffcb05");
+        })
+        .on("mouseout", function() {
+            d3.select(this).transition()
+                .duration(300)
+                .attr("r", 40)
+                .attr("fill", "white");
+        });
 
     node.append("image")
-        .attr("xlink:href", d => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonId(d.url)}.png`)
-        .attr("x", -25)
-        .attr("y", -25)
-        .attr("width", 50)
-        .attr("height", 50);
+        .attr("xlink:href", d => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png`)
+        .attr("x", -30)
+        .attr("y", -30)
+        .attr("width", 60)
+        .attr("height", 60);
 
     node.append("text")
         .attr("dy", 50)
@@ -218,16 +297,18 @@ function drawEvolutionChain(chain) {
         .style("fill", "#333");
 
     node.on("mouseover", function(event, d) {
-        d3.select(this).select("circle").transition()
-            .duration(300)
-            .attr("r", 35)
-            .attr("fill", "#ffcb05");
-
         tooltip.style("display", "block")
             .html(`
                 <strong>${d.name}</strong><br>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getPokemonId(d.url)}.png" alt="${d.name}" width="96"><br>
-                ID: ${getPokemonId(d.url)}
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png" alt="${d.name}" width="96"><br>
+                ID: ${d.id}<br>
+                <strong>Stats:</strong><br>
+                HP: ${d.stats[0].base_stat} <br>
+                Attack: ${d.stats[1].base_stat} <br>
+                Defense: ${d.stats[2].base_stat} <br>
+                Sp. Atk: ${d.stats[3].base_stat} <br>
+                Sp. Def: ${d.stats[4].base_stat} <br>
+                Speed: ${d.stats[5].base_stat}
             `);
     })
     .on("mousemove", (event) => {
@@ -235,11 +316,6 @@ function drawEvolutionChain(chain) {
             .style("top", (event.pageY - 10) + "px");
     })
     .on("mouseout", function() {
-        d3.select(this).select("circle").transition()
-            .duration(300)
-            .attr("r", 30)
-            .attr("fill", "white");
-
         tooltip.style("display", "none");
     })
     .on("click", (event, d) => {
@@ -272,7 +348,7 @@ function drawEvolutionChain(chain) {
 
     function dragended(event, d) {
         if (!event.active) simulation.alphaTarget(0);
-        d.fx = null;
+        d.fx = null; // Remove fixed position to allow it to return
         d.fy = null;
     }
 
@@ -281,6 +357,7 @@ function drawEvolutionChain(chain) {
         return parts[parts.length - 2];
     }
 }
+
 // Event listener for fetching evolution chain
 document.getElementById('fetchEvolution').addEventListener('click', () => {
     const pokemonName = document.getElementById('pokemonInput').value;

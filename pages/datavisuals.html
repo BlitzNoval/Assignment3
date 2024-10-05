@@ -3,60 +3,68 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon Commercial Website</title>
+    <title>Pokémon Data Explorer</title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/data.css">
-    <script src="../js/script.js"> </script>
+    <script src="../js/script.js"></script>
 </head>
 <body>
-    <!-- Navigation Bar -->
     <header id="navbar">
         <div class="nav-left">
             <img src="../images/Pokemon.png" alt="Pokémon Logo" class="logo">
             <div class="shiny-overlay"></div>
         </div>
-        <nav> </nav>
+        <nav></nav>
         <img src="../images/Loading.gif" alt="Profile Icon" class="profile-icon">
     </header>
-<main>
-   
 
-<body>
-    <!-- Hero Section -->
-    <section id="hero">
-        <h1>Explore Pokémon Data</h1>
-        <p>Dive into interactive visualizations of Pokémon evolution chains and type distributions.</p>
-    </section>
+    <main>
+        <section id="hero">
+            <h1>Pokémon Data Explorer</h1>
+            <p>Uncover the secrets of Pokémon evolution and type distribution!</p>
+        </section>
 
-    <!-- Evolution Chain Section -->
-    <section id="evolution-section">
-        <div class="content-left">
-            <h2>About Evolution Chains</h2>
-            <p>Enter a Pokémon's name below to explore its evolutionary tree, visualized as an interactive graph.</p>
-            <input type="text" id="pokemonInput" placeholder="Enter Pokémon name">
-            <button id="fetchEvolution">Get Evolution Chain</button>
-        </div>
-        <div class="content-right">
-            <svg id="evolutionChart" width="600" height="400"></svg>
-        </div>
-    </section>
+        <section id="evolution-section" class="data-section">
+            <div class="content-left">
+                <h2>Evolution Chains</h2>
+                <p>Discover how your favorite Pokémon evolves!</p>
+                <div class="input-group">
+                    <input type="text" id="pokemonInput" placeholder="Enter Pokémon name">
+                    <button id="fetchEvolution" class="poke-button">Explore</button>
+                </div>
+                <div class="filler-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit dui in sapien scelerisque, a luctus magna tincidunt.</p>
+                </div>
+            </div>
+            <div class="content-right">
+                <div class="chart-container">
+                    <svg id="evolutionChart" width="600" height="400"></svg>
+                </div>
+            </div>
+        </section>
 
-    <!-- Type Distribution Section -->
-    <section id="type-section">
-        <div class="content-left">
-            <svg id="typeChart" width="600" height="400"></svg>
-        </div>
-        <div class="content-right">
-            <h2>About Type Distribution</h2>
-            <p>Explore the distribution of Pokémon types in this dynamic bubble chart. Use the controls to split or merge the bubbles.</p>
-            <button id="splitButton">Split</button>
-            <button id="mergeButton">Merge</button>
-        </div>
-    </section>
+        <section id="type-section" class="data-section">
+            <div class="content-left">
+                <div class="chart-container">
+                    <svg id="typeChart" width="600" height="400"></svg>
+                </div>
+            </div>
+            <div class="content-right">
+                <h2>Type Distribution</h2>
+                <p>Explore the balance of Pokémon types in this dynamic chart!</p>
+                <div class="button-group">
+                    <button id="splitButton" class="poke-button">Split Types</button>
+                    <button id="mergeButton" class="poke-button">Merge Types</button>
+                </div>
+                <div class="filler-text">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur blandit dui in sapien scelerisque, a luctus magna tincidunt.</p>
+                </div>
+            </div>
+        </section>
+    </main>
 
-    <!-- Footer -->
     <footer>
-        <p>Pokémon data provided by <a href="https://pokeapi.co">PokeAPI</a>.</p>
+        <p>Powered by <a href="https://pokeapi.co">PokeAPI</a> | © 2024 Pokémon Data Explorer</p>
     </footer>
 
     <script src="https://d3js.org/d3.v7.min.js"></script>

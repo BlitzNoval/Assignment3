@@ -1,13 +1,3 @@
-body {
-    font-family: 'Arial', sans-serif;
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    overflow-x: hidden;
-}
-
 #navbar {
     display: flex;
     justify-content: space-between;
@@ -20,13 +10,15 @@ body {
     z-index: 1000;
 }
 
-.background-video {
+.background-image {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    background-image: url('../images/Arena.jpg');
+    background-size: cover;
+    background-position: center;
     z-index: -1;
 }
 
@@ -38,16 +30,39 @@ body {
     z-index: 1;
 }
 
+/* Hero Section */
+#hero {
+    background: linear-gradient(135deg, #CC0000 0%, #FF6666 100%);  /* Red gradient background */
+    color: white;  /* White text color */
+    text-align: center;  /* Centered text */
+    padding: 50px 0;  /* Vertical padding */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);  /* Light shadow */
+}
+
+#hero h1 {
+    font-size: 2.5em;  /* Large heading */
+    margin: 0;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);  /* Text shadow for better contrast */
+}
+
+#hero p {
+    font-size: 1.2em;  /* Slightly smaller text for the paragraph */
+    margin-top: 10px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);  /* Similar shadow effect for paragraph */
+}
+
+
 .section-title {
     font-size: 2.5em;
-    color: #ff4747;
+    color: #ffffff;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
     margin-bottom: 40px;
 }
 
+
 .design-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
     gap: 40px;
     max-width: 1200px;
     margin: 0 auto;
@@ -104,9 +119,37 @@ body {
 
 .design-item h2 {
     margin-top: 0;
-    font-size: 1.8em;
-    color: #333;
-    text-shadow: 1px 1px 3px rgba(255, 255, 255, 0.8);
+    font-size: 1.9em;
+    color: #444;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    position: relative;
+    padding-bottom: 8px;
+    transition: color 0.3s ease;
+}
+
+.design-item h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 30px;
+    height: 2px;
+    background-color: #0078ff;
+    transition: width 0.3s ease;
+}
+
+.design-item:hover h2 {
+    color: #000000;
+}
+
+.design-item:hover h2::after {
+    width: 50px;
+}
+
+@media (max-width: 768px) {
+    .design-item h2 {
+        font-size: 1.7em;
+    }
 }
 
 .design-item p {
@@ -137,6 +180,7 @@ body {
     background-color: #005bb5;
     transform: scale(1.05);
 }
+
 @media (max-width: 768px) {
     .design-container {
         grid-template-columns: 1fr;
