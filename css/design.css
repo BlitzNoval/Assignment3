@@ -1,0 +1,114 @@
+/* General Pokedex Styles */
+
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+.pokedex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.pokedex-frame {
+    background-color: #ff0000;
+    border-radius: 15px;
+    padding: 20px;
+    max-width: 1000px; /* Increased width */
+    width: 90%; /* Make the container more responsive */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.pokedex-header {
+    text-align: center;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.pokedex-content {
+    display: grid;
+    grid-template-columns: 200px 1fr; /* Adjusted grid for wider content area */
+    grid-gap: 20px;
+}
+
+.pokedex-controls {
+    display: flex;
+    flex-direction: column;
+}
+
+.pokedex-button {
+    background-color: #0078ff;
+    color: white;
+    border: none;
+    padding: 12px;
+    margin: 5px 0;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: background-color 0.3s ease;
+}
+
+.pokedex-button:hover {
+    background-color: #005bb5;
+}
+
+.pokedex-screen {
+    background-color: white;
+    padding: 25px;
+    border-radius: 10px;
+    width: 100%;
+    max-height: 600px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+    overflow-y: auto;
+}
+
+#content-display h2 {
+    color: #333;
+}
+
+#content-display p {
+    color: #666;
+    font-size: 1.2em;
+}
+
+.content-section {
+    display: none;
+}
+
+#essay-buttons {
+    margin-top: 20px;
+}
+
+.essay-button {
+    display: inline-block;
+    background-color: #ffcb05;
+    color: black;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline from links */
+    margin-right: 10px; /* Spacing between buttons */
+    transition: background-color 0.3s ease;
+}
+
+.essay-button:hover {
+    background-color: #e0a800; /* Darker shade on hover */
+}
+
+/* Add this to your existing CSS */
+
+/* PDF Viewer Section */
+#pdf-viewer {
+    margin-top: 20px;
+    display: none; /* Hide by default */
+}
+
+#pdf-viewer iframe {
+    width: 100%;
+    height: 600px;
+    border: none;
+}

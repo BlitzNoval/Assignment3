@@ -179,3 +179,81 @@ body {
 
 
 
+/* Navbar Styles */
+#dynamic-nav {
+    display: flex;
+    gap: 100px;
+    list-style: none;
+    padding: 0;
+    font-family: 'PokemonSolid', sans-serif; /* Pokémon-style font if you want to include one */
+}
+
+#dynamic-nav li {
+    list-style: none;
+    position: relative;
+    padding: 10px 0;
+}
+
+#dynamic-nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 20px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    display: inline-block;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+#dynamic-nav a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 0;
+    background-color: #ffcb05;
+    z-index: -1;
+    transition: width 0.4s ease;
+}
+
+#dynamic-nav a:hover::before {
+    width: 100%;
+}
+
+#dynamic-nav a:hover {
+    color: black;
+    transform: scale(1.1); /* Slight scaling effect on hover */
+}
+
+#dynamic-nav .active {
+    background-color: #ffcb05;
+    color: black;
+    font-weight: bolder;
+    transform: scale(1.2);
+    box-shadow: 0 4px 10px rgba(255, 203, 5, 0.6);
+    border: 2px solid white;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Adding a subtle glow effect */
+#dynamic-nav a:hover {
+    text-shadow: 2px 2px 4px rgba(255, 255, 255, 0.8);
+}
+
+#dynamic-nav a:hover::before {
+    box-shadow: 0 4px 8px rgba(255, 203, 5, 0.4);
+}
+
+/* Nav bar container (with spacing around the links) */
+#navbar nav {
+    margin-right: 50px;
+}
+
+
+
+
+
