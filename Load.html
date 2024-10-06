@@ -4,86 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pokéball Loader</title>
-    <style>
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
-            overflow: hidden;
-            transition: background-color 1s ease-in-out;
-        }
-
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-        }
-
-        #loader {
-            width: 150px;
-            height: 150px;
-            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-        }
-
-        .loading-bar-container {
-            width: 200px;
-            height: 10px;
-            background-color: #e0e0e0;
-            border-radius: 5px;
-            margin-top: 20px;
-            overflow: hidden;
-            transition: opacity 1s ease-out;
-        }
-
-        .loading-bar {
-            height: 100%;
-            background-color: #ff0000;
-            width: 0%;
-            transition: width 0.5s ease;
-        }
-
-        #enterButton {
-            margin-top: 20px;
-            display: none;
-            padding: 12px 24px;
-            font-size: 18px;
-            background-color: #ff0000;
-            color: white;
-            border: none;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.4s ease-in-out;
-            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-        }
-
-        #enterButton:hover {
-            background-color: #000000;
-            transform: translateY(-5px);
-        }
-
-        #enterButton:active {
-            transform: translateY(0px);
-        }
-
-        /* Fade-out animation for the loading bar and container */
-        .fade-out {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        /* Shrink and fade-out effect */
-        .shrink-fade {
-            transform: scale(0.1);
-            opacity: 0;
-            transition: transform 1s ease-in-out, opacity 1s ease-in-out;
-        }
-    </style>
+    <script src="./js/load.js"></script>
+     <link rel="stylesheet" href="./css/load.css">
 </head>
 <body>
     <div class="container">
@@ -97,8 +19,6 @@
         <button id="enterButton" onclick="enterPokeball()">Enter</button>
     </div>
 
-    <script>
-     
-    </script>
+    
 </body>
 </html>
