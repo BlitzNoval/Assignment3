@@ -2,7 +2,7 @@
 function injectNavbar() {
     const pages = [
         { name: "Home", link: "/pages/index.html" },
-        { name: "Design", link: "/pages/design.html" },
+        { name: "Design", link: "C:\Users\ljmoo\OneDrive\Desktop\IM3\Assignment3\pages\design.html" },
         { name: "Data Visuals", link: "/pages/datavisuals.html" },
         { name: "Theory", link: "/pages/theory.html" }
     ];
