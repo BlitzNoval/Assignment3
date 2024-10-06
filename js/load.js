@@ -66,6 +66,6 @@ function enterPokeball() {
 
     // Redirect after the effect
     setTimeout(() => {
-        window.location.href = "./pages/index.html";
+        window.location.href = "./Pages/theory.html";
     }, 1000);
 }
