@@ -1,10 +1,10 @@
 // Function to dynamically inject the navbar
 function injectNavbar() {
     const pages = [
-        { name: "Home", link: "home.html" },
-        { name: "Design", link: "Design.html" },
-        { name: "Data Visuals", link: "DataVisuals.html" },
-        { name: "Theory", link: "Theory.html" },
+        { name: "Home", link: "index.html" },
+        { name: "Design", link: "../pages/design.html" },
+        { name: "Data Visuals", link: "../pages/datavisuals.html" },
+        { name: "Theory", link: "../pages/theory.html.html" },
     ];
 
     const navBar = document.querySelector('header nav');
