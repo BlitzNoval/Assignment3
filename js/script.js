@@ -3,8 +3,8 @@ function injectNavbar() {
     const pages = [
         { name: "Home", link: "./home.html" },
         { name: "Design", link: "./design.html" },
-        { name: "Data Visuals", link: "./pages/datavisuals.html" },
-        { name: "Theory", link: "theory.html" }
+        { name: "Data Visuals", link: "./datavisuals.html" },
+        { name: "Theory", link: "./theory.html" }
     ];
 
     const navBar = document.querySelector('header nav');
