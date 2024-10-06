@@ -1,10 +1,10 @@
 // Function to dynamically inject the navbar
 function injectNavbar() {
     const pages = [
-        { name: "Home", link: "index.html" },
-        { name: "Design", link: "../pages/design.html" },
-        { name: "Data Visuals", link: "../pages/datavisuals.html" },
-        { name: "Theory", link: "../pages/theory.html.html" },
+        { name: "Home", link: "/index.html" },
+        { name: "Design", link: "/pages/design.html" },
+        { name: "Data Visuals", link: "/pages/datavisuals.html" },
+        { name: "Theory", link: "/pages/theory.html" }
     ];
 
     const navBar = document.querySelector('header nav');
@@ -31,11 +31,11 @@ function injectFooter() {
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Home</a></li>
-                        <li><a href="#">Theory</a></li>
-                        <li><a href="#">Data Visuals</a></li>
-                        <li><a href="#">Design</a></li>
-                    </ul>
+    <li><a href="/index.html">Home</a></li>
+    <li><a href="/pages/theory.html">Theory</a></li>
+    <li><a href="/pages/datavisuals.html">Data Visuals</a></li>
+    <li><a href="/pages/design.html">Design</a></li>
+</ul>
                 </div>
                 <div class="footer-social">
                     <h3>Follow Us</h3>
