@@ -1,7 +1,7 @@
 // Function to dynamically inject the navbar
 function injectNavbar() {
     const pages = [
-        { name: "Home", link: "/index.html" },
+        { name: "Home", link: "/pages/index.html" },
         { name: "Design", link: "/pages/design.html" },
         { name: "Data Visuals", link: "/pages/datavisuals.html" },
         { name: "Theory", link: "/pages/theory.html" }
