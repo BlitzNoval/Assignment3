@@ -1,6 +1,5 @@
 const typeChart = d3.select("#typeChart");
 const evolutionChart = d3.select("#evolutionChart");
-const selectedTypes = new Set();
 
 // Tooltip setup
 const tooltip = d3.select("body").append("div")
@@ -49,30 +48,6 @@ async function fetchTypeDistribution() {
     drawTypeDistributionChart(typeCount, typeDetails);
 }
 
-
-// Dynamically create checkboxes for filtering types
-function createFilterCheckboxes(typeCount) {
-    const filterContainer = d3.select("#filters");
-    filterContainer.selectAll("*").remove(); // Clear existing checkboxes
-
-    Object.keys(typeCount).forEach(type => {
-        filterContainer.append("label")
-            .text(type)
-            .append("input")
-            .attr("type", "checkbox")
-            .attr("value", type)
-            .on("change", function () {
-                if (this.checked) {
-                    selectedTypes.add(type);
-                } else {
-                    selectedTypes.delete(type);
-                }
-                drawTypeDistributionChart(typeCount);
-            });
-    });
-}
-
-// Draw type distribution bubbles
 // Draw type distribution bubbles
 function drawTypeDistributionChart(typeCount, typeDetails) {
     typeChart.selectAll("*").remove(); // Clear previous chart
@@ -80,9 +55,7 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
     const width = +typeChart.attr("width");
     const height = +typeChart.attr("height");
 
-    const nodes = Object.entries(typeCount)
-        .filter(([type]) => selectedTypes.size === 0 || selectedTypes.has(type))
-        .map(([type, count]) => ({ type, count }));
+    const nodes = Object.entries(typeCount).map(([type, count]) => ({ type, count }));
 
     const radiusScale = d3.scaleSqrt()
         .domain([0, d3.max(Object.values(typeCount))])
@@ -135,7 +108,7 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
                 // Toggle selection
                 const isSelected = d3.select(event.currentTarget).classed("selected");
                 d3.select(event.currentTarget).classed("selected", !isSelected);
-                
+
                 if (!isSelected) {
                     // Grow and change color when selected
                     d3.select(event.currentTarget)
@@ -165,8 +138,6 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
         bubbles.merge(bubbleEnter)
             .attr("transform", d => `translate(${d.x},${d.y})`);
     }
-
-    createFilterCheckboxes(typeCount);
 
     // Add CSS for hover effect
     d3.select("head").append("style").text(`
@@ -265,113 +236,50 @@ async function drawEvolutionChain(chain) {
         .attr("class", "nodes")
         .selectAll("g")
         .data(nodes)
-        .enter()
-        .append("g")
-        .call(d3.drag()
-            .on("start", dragstarted)
-            .on("drag", dragged)
-            .on("end", dragended));
+        .enter().append("g");
 
     node.append("circle")
-        .attr("r", 40) // Increase circle size
-        .attr("fill", "white")
-        .attr("stroke", "#666")
-        .attr("stroke-width", 2)
-        .on("mouseover", function() {
-            d3.select(this).transition()
-                .duration(300)
-                .attr("r", 45)
-                .attr("fill", "#ffcb05");
+        .attr("r", 25)
+        .attr("fill", "#69b3a2")
+        .on("mouseover", function (event, d) {
+            tooltip.style("display", "block")
+                .html(`
+                    <strong>${d.name.toUpperCase()}</strong><br>
+                    HP: ${d.stats[0].base_stat}<br>
+                    Attack: ${d.stats[1].base_stat}<br>
+                    Defense: ${d.stats[2].base_stat}<br>
+                    Special Attack: ${d.stats[3].base_stat}<br>
+                    Special Defense: ${d.stats[4].base_stat}<br>
+                    Speed: ${d.stats[5].base_stat}<br>
+                `);
         })
-        .on("mouseout", function() {
-            d3.select(this).transition()
-                .duration(300)
-                .attr("r", 40)
-                .attr("fill", "white");
+        .on("mousemove", (event) => {
+            tooltip.style("left", (event.pageX + 5) + "px")
+                .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", () => {
+            tooltip.style("display", "none");
         });
-
-    node.append("image")
-        .attr("xlink:href", d => `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png`)
-        .attr("x", -30)
-        .attr("y", -30)
-        .attr("width", 60)
-        .attr("height", 60);
 
     node.append("text")
-        .attr("dy", 50)
+        .attr("dy", 40)
         .attr("text-anchor", "middle")
-        .text(d => d.name)
         .style("font-size", "12px")
-        .style("fill", "#333");
+        .text(d => d.name);
 
-    node.on("mouseover", function(event, d) {
-        tooltip.style("display", "block")
-            .html(`
-                <strong>${d.name}</strong><br>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png" alt="${d.name}" width="96"><br>
-                ID: ${d.id}<br>
-                <strong>Stats:</strong><br>
-                HP: ${d.stats[0].base_stat} <br>
-                Attack: ${d.stats[1].base_stat} <br>
-                Defense: ${d.stats[2].base_stat} <br>
-                Sp. Atk: ${d.stats[3].base_stat} <br>
-                Sp. Def: ${d.stats[4].base_stat} <br>
-                Speed: ${d.stats[5].base_stat}
-            `);
-    })
-    .on("mousemove", (event) => {
-        tooltip.style("left", (event.pageX + 10) + "px")
-            .style("top", (event.pageY - 10) + "px");
-    })
-    .on("mouseout", function() {
-        tooltip.style("display", "none");
-    })
-    .on("click", (event, d) => {
-        // Highlight clicked Pokémon and its direct evolutions
-        node.select("circle")
-            .attr("fill", n => n === d || links.some(l => (l.source === d && l.target === n) || (l.target === d && l.source === n)) ? "#ffcb05" : "white");
-    });
-
-    simulation.on("tick", () => {
-        link.attr("d", d => {
-            const dx = d.target.x - d.source.x,
-                  dy = d.target.y - d.source.y,
-                  dr = Math.sqrt(dx * dx + dy * dy);
-            return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
-        });
-
+    simulation.nodes(nodes).on("tick", () => {
         node.attr("transform", d => `translate(${d.x},${d.y})`);
+        link.attr("d", d => `M${d.source.x},${d.source.y}L${d.target.x},${d.target.y}`);
     });
 
-    function dragstarted(event, d) {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x;
-        d.fy = d.y;
-    }
-
-    function dragged(event, d) {
-        d.fx = event.x;
-        d.fy = event.y;
-    }
-
-    function dragended(event, d) {
-        if (!event.active) simulation.alphaTarget(0);
-        d.fx = null; // Remove fixed position to allow it to return
-        d.fy = null;
-    }
+    simulation.force("link").links(links);
 
     function getPokemonId(url) {
-        const parts = url.split("/");
-        return parts[parts.length - 2];
+        return url.split("/").filter(Boolean).pop();
     }
 }
 
-// Event listener for fetching evolution chain
-document.getElementById('fetchEvolution').addEventListener('click', () => {
-    const pokemonName = document.getElementById('pokemonInput').value;
-    fetchEvolutionChain(pokemonName);
-});
 
-// Fetch and display Pokémon type distribution initially
+
+// Initiate the type distribution and evolution chain fetch on load
 fetchTypeDistribution();
-

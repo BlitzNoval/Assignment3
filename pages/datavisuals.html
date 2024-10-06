@@ -31,9 +31,10 @@
                 <h2>Evolution Chains</h2>
                 <p>Discover how your favorite Pokémon evolves!</p>
                 <div class="input-group">
-                    <input type="text" id="pokemonInput" placeholder="Enter Pokémon name">
+                    <input type="text" id="pokemon-search" placeholder="Enter Pokémon name">
                     <button id="fetchEvolution" class="poke-button">Explore</button>
                 </div>
+                <div id="error-message" style="color: red;"></div>
                 <div class="filler-text">
                     <h3>Evolution Chain Chart</h3>
                     <p>This chart allows you to visualize the evolution chain of any specific Pokémon. By entering a Pokémon's name, the chart will display its evolutionary stages, showing how it evolves over time.</p>
@@ -41,16 +42,16 @@
                     <ul>
                         <li>Hover over each Pokémon to see detailed stats like HP, Attack, Defense, and more.</li>
                         <li>Click on a Pokémon to highlight it along with its direct evolutions, making it easy to track its evolutionary line.</li>
-                       </ul>
-                       <h3>Example Pokemon</h3>
-                            <li> Pikachu    </li>
-                            <li> Charmander    </li>
-                            <li> Bulbasaur    </li>
-                            <li> Squirtle    </li>
-                            <li> Jigglypuff    </li>
-                            <li> Eevee    </li>
-                            <li> Snorlax    </li>
-                        
+                    </ul>
+                    <h3>Example Pokémon</h3>
+                    <ul>
+                        <li>Pikachu</li>
+                        <li>Charmander</li>
+                        <li>Bulbasaur</li>
+                        <li>Squirtle</li>
+                        <li>Jigglypuff</li>
+                        <li>Eevee</li>
+                        <li>Snorlax</li>
                     </ul>
                     <p>This chart helps you discover how Pokémon evolve and the relationships between different stages of their growth.</p>
                 </div>
@@ -69,7 +70,11 @@
                 </div>
             </div>
             <div class="content-right">
-                <div id="filters"></div>
+                <div id="filters">
+                    <label>
+                        <input type="checkbox" id="filter-types"> Show only types with more than 5 Pokémon
+                    </label>
+                </div>
                 <h2>Type Distribution</h2>
                 <p>Explore the balance of Pokémon types in this dynamic chart!</p>
                 
@@ -91,5 +96,9 @@
     <footer>
         <p>Powered by <a href="https://pokeapi.co">PokeAPI</a> | © 2024 Pokémon Data Explorer</p>
     </footer>
+
+    <script>
+       
+    </script>
 </body>
 </html>
