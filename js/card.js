@@ -21,4 +21,4 @@ function showPDF() {
     const iframe = document.querySelector('#pdf-viewer iframe');
     iframe.src = '../essays/Essay.pdf'; // Change this to the correct path
     document.getElementById('pdf-viewer').style.display = 'block';
-}
+} 
