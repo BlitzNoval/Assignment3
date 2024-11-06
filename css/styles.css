@@ -271,3 +271,78 @@ body {
     line-height: 1.5;
 }
 
+/* Default Styles for Desktop */
+body {
+    font-size: 16px;
+}
+
+/* Tablet Breakpoint */
+@media (max-width: 768px) {
+    #navbar {
+        flex-direction: column;  /* Stack navbar items on top */
+    }
+
+    .hero-section {
+        height: 60vh;  /* Adjust hero section height for smaller screens */
+    }
+
+    .hero-content h1 {
+        font-size: 2em;  /* Adjust title font size */
+    }
+
+    .hero-content p {
+        font-size: 1.2em;  /* Adjust paragraph font size */
+    }
+
+    .footer-content {
+        flex-direction: column;  /* Stack footer content */
+        text-align: center;  /* Center footer text */
+    }
+
+    .about-section {
+        padding: 20px;  /* Reduce padding for smaller devices */
+    }
+
+    .about-content {
+        flex-direction: column;  /* Stack content vertically */
+        align-items: center;  /* Center align the content */
+    }
+
+    .about-image {
+        width: 80%;  /* Reduce image width */
+        margin-bottom: 20px;  /* Add space between text and image */
+    }
+
+    .about-text {
+        width: 80%;  /* Reduce text width */
+        padding-left: 0;
+    }
+}
+
+/* Mobile Breakpoint */
+@media (max-width: 480px) {
+    #navbar {
+        flex-direction: column;
+        padding: 10px;
+    }
+
+    .hero-content h1 {
+        font-size: 1.5em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .explore-btn {
+        padding: 8px 16px;
+    }
+
+    .footer-content {
+        padding: 20px;
+    }
+
+    .footer-logo-img {
+        width: 120px;  /* Smaller footer logo */
+    }
+}
