@@ -106,7 +106,7 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
 
     const radiusScale = d3.scaleSqrt()
         .domain([0, d3.max(Object.values(typeCount))])
-        .range([5, 50]);
+        .range([20, 50]);
 
     const color = d3.scaleOrdinal(d3.schemeCategory10);
 
@@ -135,13 +135,20 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
                 `).join('');
 
                 tooltip.style("display", "block")
-                    .html(`
-                        <strong style="font-size: 16px; color: ${color(d.type)};">${d.type.toUpperCase()}</strong><br>
-                        <span style="font-size: 14px;">Count: ${d.count}</span><br><br>
-                        <strong>Includes:</strong><br>
-                        ${pokemonList}<br>
-                        <span style="font-size: 12px; color: #666;">(and ${details.pokemons.length - 5} more...)</span>
-                    `);
+  .html(`
+    <div class="tooltip-content">
+      <div class="type-info">
+        <div class="type-name" style="color: ${color(d.type)}; font-weight: 700; font-size: 18px; text-transform: capitalize;">${d.type}</div>
+        <div class="count" style="font-weight: 500; font-size: 16px;">Count: <span class="count-value" style="font-weight: 700;">${d.count}</span></div>
+      </div>
+      <div class="pokemon-examples" style="margin-top: 12px;">
+        <span class="label" style="color: #27ae60; font-weight: 600; font-size: 16px;">Pokémon Examples:</span>
+        <div class="pokemon-list" style="font-size: 15px; line-height: 1.5; margin-top: 8px;">${pokemonList}</div>
+      </div>
+    </div>
+  `)
+  .style("opacity", 1);
+            
             })
             .on("mousemove", (event) => {
                 tooltip.style("left", (event.pageX + 5) + "px")
@@ -154,7 +161,10 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
             .attr("text-anchor", "middle")
             .text(d => d.type)
             .style("font-size", "12px")
-            .style("fill", "#333");
+            .style("fill", "#333")
+            .style("font-weight", "bold") // Add bold font weight
+            .attr("dominant-baseline", "central") // Vertical centering
+            .attr("transform", d => `translate(0, ${radiusScale(d.count) / 2})`); // Adjust vertical position
 
         bubbles.exit().remove();
 
@@ -178,10 +188,11 @@ async function fetchEvolutionChain(pokemonName) {
     }
 }
 
+
 async function drawEvolutionChain(chain) {
     evolutionChart.selectAll("*").remove();
 
-    const width = 800, height = 200;
+    const width = 1200, height = 600; // Increased size for more space
     const svg = evolutionChart.append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -259,7 +270,7 @@ async function drawEvolutionChain(chain) {
 
     node.append("circle")
         .attr("r", 40)
-        .attr("fill", "white")
+        .attr("fill", (d, i) => d3.schemeCategory10[i % 10]) // Different colors for personality
         .attr("stroke", "#666")
         .attr("stroke-width", 2)
         .on("mouseover", function() {
@@ -272,7 +283,7 @@ async function drawEvolutionChain(chain) {
             d3.select(this).transition()
                 .duration(300)
                 .attr("r", 40)
-                .attr("fill", "white");
+                .attr("fill", (d, i) => d3.schemeCategory10[i % 10]);
         });
 
     node.append("image")
@@ -289,21 +300,31 @@ async function drawEvolutionChain(chain) {
         .style("font-size", "12px")
         .style("fill", "#333");
 
-    node.on("mouseover", function(event, d) {
-        tooltip.style("display", "block")
-            .html(`
-                <strong>${d.name}</strong><br>
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png" alt="${d.name}" width="96"><br>
-                ID: ${d.id}<br>
-                <strong>Stats:</strong><br>
-                HP: ${d.stats[0].base_stat} <br>
-                Attack: ${d.stats[1].base_stat} <br>
-                Defense: ${d.stats[2].base_stat} <br>
-                Sp. Atk: ${d.stats[3].base_stat} <br>
-                Sp. Def: ${d.stats[4].base_stat} <br>
-                Speed: ${d.stats[5].base_stat}
-            `);
-    })
+        node.on("mouseover", function(event, d) {
+            tooltip.style("display", "block")
+              .html(`
+                <div class="tooltip-content">
+                  <div class="pokemon-info">
+                    <div class="pokemon-name" style="font-weight: 700; font-size: 18px;">${d.name}</div>
+                    <div class="pokemon-image">
+                      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${d.id}.png" alt="${d.name}" width="96">
+                    </div>
+                    <div class="pokemon-id" style="font-size: 16px;">ID: ${d.id}</div>
+                  </div>
+                  <div class="pokemon-stats" style="margin-top: 12px;">
+                    <div class="stats-label" style="color: #27ae60; font-weight: 600; font-size: 16px;">Stats:</div>
+                    <div class="stats-list" style="font-size: 15px; line-height: 1.5; margin-top: 8px;">
+                      HP: ${d.stats[0].base_stat} <br>
+                      Attack: ${d.stats[1].base_stat} <br>
+                      Defense: ${d.stats[2].base_stat} <br>
+                      Sp. Atk: ${d.stats[3].base_stat} <br>
+                      Sp. Def: ${d.stats[4].base_stat} <br>
+                      Speed: ${d.stats[5].base_stat}
+                    </div>
+                  </div>
+                </div>
+              `);
+          })
     .on("mousemove", (event) => {
         tooltip.style("left", (event.pageX + 10) + "px")
             .style("top", (event.pageY - 10) + "px");
@@ -313,7 +334,7 @@ async function drawEvolutionChain(chain) {
     })
     .on("click", (event, d) => {
         node.select("circle")
-            .attr("fill", n => n === d || links.some(l => (l.source === d && l.target === n) || (l.target === d && l.source === n)) ? "#ffcb05" : "white");
+            .attr("fill", n => n === d || links.some(l => (l.source === d && l.target === n) || (l.target === d && l.source === n)) ? "#ffcb05" : (d, i) => d3.schemeCategory10[i % 10]);
     });
 
     simulation.on("tick", () => {
