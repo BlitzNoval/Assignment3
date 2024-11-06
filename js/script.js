@@ -31,10 +31,10 @@ function injectFooter() {
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="./index.html">Home</a></li>
-                        <li><a href="./pages/theory.html">Theory</a></li>
-                        <li><a href="./pages/datavisuals.html">Data Visuals</a></li>
-                        <li><a href="./pages/design.html">Design</a></li>
+                          <li><a href="./home.html">Home</a></li>
+                        <li><a href="./theory.html">Theory</a></li>
+                        <li><a href="./datavisuals.html">Data Visuals</a></li>
+                        <li><a href="./design.html">Design</a></li>
                     </ul>
                 </div>
                 <div class="footer-social">
