@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pokémon Trainer Registration</title>
+    <link rel="stylesheet" href="../css/form.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Pokémon Trainer Registration</h1>
+        
+        <form id="trainerForm">
+            <div class="form-group">
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="name" required>
+                <div class="error" id="nameError">Name must contain only letters and spaces</div>
+            </div>
+
+            <div class="form-group">
+                <label for="trainerName">Enter Your Trainer Name:</label>
+                <input type="text" id="trainerName" name="trainerName" maxlength="12" required>
+                <div class="character-count" id="trainerNameCount">0/12 characters</div>
+                <div class="error" id="trainerNameError">The trainer name cannot exceed 12 characters.</div>
+            </div>
+            
+
+            <div class="form-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+                <div class="error" id="emailError">Please enter a valid email (e.g., @gmail.com, @yahoo.com)</div>
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password:</label>
+                <div class="password-wrapper">
+                    <input type="password" id="password" name="password" required>
+                    <span class="view-password" id="togglePassword"></span>
+                </div>
+                <div class="error" id="passwordError">Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character</div>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">Phone Number:</label>
+                <input type="tel" id="phone" name="phone" placeholder="000-000-000" required>
+                <div class="character-count" id="phoneCount">0/9 Characters</div>
+                <div class="error" id="phoneError">Phone number must be 8 digits</div>
+            </div>
+
+            <div class="button-group">
+                <button type="submit">Register as Trainer</button>
+                <div class="google-button" onclick="googleLogin()">
+                    <img src="https://img.icons8.com/color/48/000000/google-logo.png" alt="Google Logo" width="20">
+                    <span>Sign in with Google</span>
+                </div>
+            </div>
+
+            <div class="success-modal" id="successModal">
+                <div class="success-content">
+                    <div class="success-icon"></div>
+                    <h2>Welcome Trainer!</h2>
+                    <p>Successfully added to the roster!</p>
+                    <a href="./home.html" class="continue-btn">Continue</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script src="../js/form.js"></script> 
+</body>
+</html>

@@ -68,9 +68,10 @@ body {
     background-color: red;
     color: white;
     border: none;
-    border-radius: 5px;
+    border-radius: 10px;
     cursor: pointer;
     animation: pulse 1.5s infinite;
+    text-decoration: none;
 }
 
 @keyframes pulse {
