@@ -40,9 +40,9 @@ function injectFooter() {
                 <div class="footer-social">
                     <h3>Follow Us</h3>
                     <ul>
-                        <li><a href="#" class="social-icon">Instagram</a></li>
-                        <li><a href="#" class="social-icon">GitHub</a></li>
-                        <li><a href="#" class="social-icon">Twitter</a></li>
+                        <li><a href="https://www.instagram.com/liamjm__/" class="social-icon">Instagram</a></li>
+                        <li><a href="https://github.com/BlitzNoval" class="social-icon">GitHub</a></li>
+                        <li><a href="https://x.com/shinobushes" class="social-icon">Twitter</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
