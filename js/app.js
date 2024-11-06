@@ -26,56 +26,76 @@ async function fetchTypeDistribution() {
     const typeCount = {};
     const typeDetails = {};
 
-    for (const pokemon of pokemons) {
-        const details = await fetch(pokemon.url);
-        const data = await details.json();
-        data.types.forEach(type => {
+    const fetches = pokemons.map(async (pokemon) => {
+        const details = await fetch(pokemon.url).then(res => res.json());
+        details.types.forEach(type => {
             const typeName = type.type.name;
             typeCount[typeName] = (typeCount[typeName] || 0) + 1;
             if (!typeDetails[typeName]) {
-                typeDetails[typeName] = {
-                    count: 0,
-                    pokemons: []
-                };
+                typeDetails[typeName] = { pokemons: [] };
             }
-            typeDetails[typeName].count++;
             typeDetails[typeName].pokemons.push({
-                name: data.name,
-                sprite: data.sprites.front_default
+                name: details.name,
+                sprite: details.sprites.front_default
             });
         });
-    }
+    });
 
+    await Promise.all(fetches);
+    createFilterDropdown(typeCount, typeDetails);
     drawTypeDistributionChart(typeCount, typeDetails);
 }
 
-
-// Dynamically create checkboxes for filtering types
-function createFilterCheckboxes(typeCount) {
+// Create filter dropdown for Pokémon types
+function createFilterDropdown(typeCount, typeDetails) {
     const filterContainer = d3.select("#filters");
-    filterContainer.selectAll("*").remove(); // Clear existing checkboxes
+    filterContainer.selectAll("*").remove();
+
+    // Dropdown menu for filter options
+    const dropdown = filterContainer.append("div")
+        .attr("class", "dropdown");
+
+    dropdown.append("button")
+        .attr("class", "dropbtn")
+        .text("Filter Types")
+        .on("click", () => {
+            document.getElementById("typeDropdown").classList.toggle("show");
+        });
+
+    const dropdownContent = dropdown.append("div")
+        .attr("id", "typeDropdown")
+        .attr("class", "dropdown-content");
+
+    // "Clear All" option to reset the filter
+    dropdownContent.append("button")
+        .attr("class", "filter-option clear-button")
+        .text("Clear All Filters")
+        .on("click", () => {
+            selectedTypes.clear();
+            d3.selectAll(".filter-option").classed("active", false);
+            drawTypeDistributionChart(typeCount, typeDetails);
+        });
 
     Object.keys(typeCount).forEach(type => {
-        filterContainer.append("label")
+        dropdownContent.append("button")
+            .attr("class", "filter-option")
             .text(type)
-            .append("input")
-            .attr("type", "checkbox")
-            .attr("value", type)
-            .on("change", function () {
-                if (this.checked) {
-                    selectedTypes.add(type);
-                } else {
+            .on("click", function () {
+                const isActive = selectedTypes.has(type);
+                if (isActive) {
                     selectedTypes.delete(type);
+                } else {
+                    selectedTypes.add(type);
                 }
-                drawTypeDistributionChart(typeCount);
+                d3.select(this).classed("active", !isActive);
+                drawTypeDistributionChart(typeCount, typeDetails);
             });
     });
 }
 
 // Draw type distribution bubbles
-// Draw type distribution bubbles
 function drawTypeDistributionChart(typeCount, typeDetails) {
-    typeChart.selectAll("*").remove(); // Clear previous chart
+    typeChart.selectAll("*").remove();
 
     const width = +typeChart.attr("width");
     const height = +typeChart.attr("height");
@@ -97,8 +117,7 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
         .on("tick", ticked);
 
     function ticked() {
-        const bubbles = typeChart.selectAll("g")
-            .data(nodes);
+        const bubbles = typeChart.selectAll("g").data(nodes);
 
         const bubbleEnter = bubbles.enter().append("g");
 
@@ -108,7 +127,7 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
             .on("mouseover", (event, d) => {
                 const details = typeDetails[d.type];
                 const samplePokemons = details.pokemons.slice(0, 5);
-                let pokemonList = samplePokemons.map(p => `
+                const pokemonList = samplePokemons.map(p => `
                     <div style="display: inline-block; text-align: center; margin: 5px;">
                         <img src="${p.sprite}" alt="${p.name}" width="40"><br>
                         <span style="font-size: 12px;">${p.name}</span>
@@ -121,37 +140,14 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
                         <span style="font-size: 14px;">Count: ${d.count}</span><br><br>
                         <strong>Includes:</strong><br>
                         ${pokemonList}<br>
-                        <span style="font-size: 12px; color: #666;">(and ${details.count - 5} more...)</span>
+                        <span style="font-size: 12px; color: #666;">(and ${details.pokemons.length - 5} more...)</span>
                     `);
             })
             .on("mousemove", (event) => {
                 tooltip.style("left", (event.pageX + 5) + "px")
                     .style("top", (event.pageY - 28) + "px");
             })
-            .on("mouseout", () => {
-                tooltip.style("display", "none");
-            })
-            .on("click", (event, d) => {
-                // Toggle selection
-                const isSelected = d3.select(event.currentTarget).classed("selected");
-                d3.select(event.currentTarget).classed("selected", !isSelected);
-                
-                if (!isSelected) {
-                    // Grow and change color when selected
-                    d3.select(event.currentTarget)
-                        .transition()
-                        .duration(300)
-                        .attr("r", radiusScale(d.count) * 1.2)
-                        .attr("fill", d3.color(color(d.type)).brighter(0.5));
-                } else {
-                    // Return to original size and color when deselected
-                    d3.select(event.currentTarget)
-                        .transition()
-                        .duration(300)
-                        .attr("r", radiusScale(d.count))
-                        .attr("fill", color(d.type));
-                }
-            });
+            .on("mouseout", () => tooltip.style("display", "none"));
 
         bubbleEnter.append("text")
             .attr("dy", "-1em")
@@ -165,17 +161,6 @@ function drawTypeDistributionChart(typeCount, typeDetails) {
         bubbles.merge(bubbleEnter)
             .attr("transform", d => `translate(${d.x},${d.y})`);
     }
-
-    createFilterCheckboxes(typeCount);
-
-    // Add CSS for hover effect
-    d3.select("head").append("style").text(`
-        circle:hover {
-            stroke: #333;
-            stroke-width: 2px;
-            cursor: pointer;
-        }
-    `);
 }
 
 // Evolution chain fetching and visualization
@@ -194,7 +179,7 @@ async function fetchEvolutionChain(pokemonName) {
 }
 
 async function drawEvolutionChain(chain) {
-    evolutionChart.selectAll("*").remove(); // Clear previous chart
+    evolutionChart.selectAll("*").remove();
 
     const width = 800, height = 200;
     const svg = evolutionChart.append("svg")
@@ -273,7 +258,7 @@ async function drawEvolutionChain(chain) {
             .on("end", dragended));
 
     node.append("circle")
-        .attr("r", 40) // Increase circle size
+        .attr("r", 40)
         .attr("fill", "white")
         .attr("stroke", "#666")
         .attr("stroke-width", 2)
@@ -327,7 +312,6 @@ async function drawEvolutionChain(chain) {
         tooltip.style("display", "none");
     })
     .on("click", (event, d) => {
-        // Highlight clicked Pokémon and its direct evolutions
         node.select("circle")
             .attr("fill", n => n === d || links.some(l => (l.source === d && l.target === n) || (l.target === d && l.source === n)) ? "#ffcb05" : "white");
     });
@@ -356,7 +340,7 @@ async function drawEvolutionChain(chain) {
 
     function dragended(event, d) {
         if (!event.active) simulation.alphaTarget(0);
-        d.fx = null; // Remove fixed position to allow it to return
+        d.fx = null;
         d.fy = null;
     }
 
@@ -375,3 +359,15 @@ document.getElementById('fetchEvolution').addEventListener('click', () => {
 // Fetch and display Pokémon type distribution initially
 fetchTypeDistribution();
 
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn')) {
+        const dropdowns = document.getElementsByClassName("dropdown-content");
+        for (let i = 0; i < dropdowns.length; i++) {
+            const openDropdown = dropdowns[i];
+            if (openDropdown.classList.contains('show')) {
+                openDropdown.classList.remove('show');
+            }
+        }
+    }
+}

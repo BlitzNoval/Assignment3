@@ -55,6 +55,8 @@ h1 {
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
 
+
+
 .content-left, .content-right {
     width: 48%;
 }
@@ -153,4 +155,98 @@ footer a:hover {
     .content-left, .content-right {
         width: 100%;
     }
+}
+
+#filters {
+    position: relative;
+    display: inline-block;
+    margin-top: 15px;
+}
+
+.dropdown {
+    position: relative;
+}
+
+.dropbtn {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    font-size: 14px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.dropbtn:hover {
+    background-color: #555;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.dropdown-content.show {
+    display: block;
+}
+
+.dropdown-content .filter-option {
+    background-color: white;
+    padding: 8px 12px;
+    text-align: left;
+    border: none;
+    width: 100%;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.dropdown-content .filter-option:hover {
+    background-color: #eee;
+}
+
+.dropdown-content .filter-option.active {
+    background-color: #ff6666;
+    color: white;
+}
+
+.filter-button {
+    background-color: #e0e0e0;
+    border: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.filter-button:hover {
+    background-color: #ccc;
+    transform: scale(1.05);
+}
+
+.filter-button.active {
+    background-color: #ff6666;
+    color: white;
+}
+
+.clear-button {
+    background-color: #333;
+    color: rgb(0, 0, 0);
+    margin-right: 10px;
+    font-weight: bold;
+}
+
+.clear-button:hover {
+    background-color: #555;
 }
