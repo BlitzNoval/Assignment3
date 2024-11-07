@@ -250,3 +250,23 @@ footer a:hover {
 .clear-button:hover {
     background-color: #555;
 }
+
+#backToTop {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    padding: 10px 15px;
+    font-size: 14px;
+    background-color: #FFCB05; /* Yellow color for Pokémon theme */
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    display: none; /* Hidden by default */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: opacity 0.3s;
+}
+
+#backToTop:hover {
+    background-color: #FF0000; /* Red color on hover */
+}
