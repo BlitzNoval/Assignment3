@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pokémon Wireframes & Style Guide</title>
+    <title>Pokémon Wireframes </title>
     <link rel="stylesheet" href="../css/styles.css">
     <link rel="stylesheet" href="../css/wireframes.css">
     <script src="../js/script.js" defer></script>
@@ -25,7 +25,8 @@
 
     <main class="content-section">
         <h1 class="section-title">Pokémon Wireframes & Rationals </h1>
-        
+        <h1 style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: 600; color: #ffffff; text-align: center; margin-bottom: 20px;">Low Fidelity Wireframes</h1>
+            
         <div class="card-container">
 
             <div class="card">
@@ -33,7 +34,7 @@
                     <img src="../images/Wireframes/WF1.png" alt="Wireframe 1">
                 </div>
                 <div class="card-text">
-                    <h2>Low Fidelity Wireframes</h2>
+                    
                     <h3>Wireframe 1</h3>
                     <p><strong>Navigation Structure:</strong></p>
                     <ul>
@@ -115,13 +116,14 @@
                     </ul>
                 </div>
             </div>
-
+            <h1 style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: 600; color: #ffffff; text-align: center; margin-bottom: 20px;"> High Fidelty Wireframe </h1>
+            
             <div class="card">
                 <div class="card-image">
                     <img src="../images/Wireframes/WFF1.png" alt="Style Guide">
                 </div>
                 <div class="card-text">
-                    <h2>High Fidelity Wireframes</h2>
+                    <h2></h2>
                     <h3>Color Theory</h3>
                     <ul>
                         <li><strong>Consistent Brand Identity:</strong> The use of Pokémon red for headers maintains strong brand recognition.</li>
@@ -178,6 +180,150 @@
                         <li>Implied interactive charts for user exploration.</li>
                         <li>A search bar for specific data points or Pokémon.</li>
                     </ul>
+                </div>
+            </div>
+            <h1 style="font-family: 'Helvetica Neue', Arial, sans-serif; font-size: 24px; font-weight: 600; color: #ffffff; text-align: center; margin-bottom: 20px;">Final Wireframes with Annotations</h1>
+            <div class="card">
+                <div class="card-image">
+                    <img src="../images/FinalWireframes/DATAF.png" alt="Wireframe 1">
+                </div>
+                <div class="card-text">
+                    <h2> Annotation 1 (Top Search Bar) </h2>
+                       <p>I went with a super clean search implementation here. You know how Pokémon trainers always want to quickly look up specific stats - so I made sure to position this prominently at the top. After some user testing, I found the generous width really helps with those longer Pokémon names.  </p> 
+                       <br>
+                       <h2>Annotation 2 (Graph Node Interaction) </h2>
+                       <p> 
+                        
+This is probably my favorite interaction piece - see that little tooltip trigger? When users hover over these connected nodes, it reveals deeper stat relationships. I was inspired by how Pokémon types and evolutions connect to each other, so I wanted to visualize that web of relationships. The connected graph style really helps trainers see how different stats and attributes flow together. Still tweaking the hover states to make them feel just right.
+                    </p>
+                    <br>
+                    <h2> Annotation 3 (Bubble Chart Element) </h2>
+                    <p> I realized that traditional bar charts weren't cutting it for comparing multiple Pokémon stats at once. The bubble size correlates to base stat totals, and I clustered them by type. Those pink interactive indicators show which bubbles are selected - really helps when you're trying to compare, say, all the Fire-types' at once. The clustered layout took some trial and error, but I think it really helps show natural groupings.</p>
+                  
+                </div>
+            </div>
+            <hr>
+            <div class="card">
+                <div class="card-image">
+                    <img src="../images/FinalWireframes/DESIGNF.png" alt="Wireframe 1">
+                </div>
+                <div class="card-text">
+                    <h2> Annotation 1 (Style Guide Card Interaction) </h2>
+                    <p>I placed a hover/click state indicator here on the style guide preview. After several iterations, I found that having this interactive element draws attention to our core design language. The card layout with the Pokémon silhouette works as a playful yet professional way to present my design system</p><br>
+                    <h2>Annotation 2 (Structural Hierarchicy): </h2>
+                    <p> 
+                        Each card follows the same pattern with:
+                        <ul>
+                            <li> Clear title </li>
+                            <li> Preview area with relevant Pokémon-themed imagery </li>
+                            <li>Consistent "View Full" CTAs in that punchy blue (pulled straight from the colour palette!) </li>
+                        </ul>
+                    
+                       
+                        
+                        
+                        I'm particularly proud of how the cards maintain visual hierarchy while still feeling distinctly "Pokémon." The subtle background tints (that light blue and purple) help separate different types of documentation without breaking the overall cohesion.</p>
+                 <br>
+                 <h2> Annotation 3 (Consistency) </h2>
+                 <p> Those "View Full" buttons are all positioned identically - learned that lesson the hard way after some early feedback about inconsistent clicking targets 
+                 </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card">
+                <div class="card-image">
+                    <img src="../images/FinalWireframes/HOMEF.png" alt="Wireframe 1">
+                </div>
+                <div class="card-text">
+                    <h2> Annotation 1 (Hero CTA Button) </h2>
+                    <p>Really intrested by the journey of how this "Explore Now" button turned out. I positioned it centrally within our hero section, using that punchy red that's signature to Pokémon. The hover state adds a subtle glow effect (matching the cosmic theme) - something I added after noticing users weren't immediately clear it was clickable. Now it's the conversion point, guiding users into the exploration journey.
+                    </p>
+                    <br>
+                    <h2>Annotation 2 (Active Navigation State) </h2>
+                    <p> 
+                        Went through a few iterations before settling on this high-contrast solution. The black text on yellow really pops against our red header, making it impossible to lose track of where you are in the site.
+                    </p>
+                 <br>
+                 <h2> Annotation 3 (Nav Bar) </h2>
+                 <p> Kept this in white to maintain clear hierarchy in the navigation. When users hover, it subtly glows - a little UI touch that ties back to our cosmic theme. The spacing between nav items was carefully considered to prevent accidental clicks while keeping everything within comfortable reach
+                 </p>
+                 <h2> Annotation 4 (Footer Logo) </h2>
+                 <p> Decided to echo the header's branding in the footer, but with a twist - it's slightly more subdued to avoid competing with the main content. The logo here acts as both branding and a home button (because who doesn't love a good redundant navigation option?). The placement helps ground the cosmic design while maintaining brand presence</p>
+                  <h2> Annotation 5 (Quick Links) </h2>
+                  <p>
+                    The contrast between the text and the gradient footer background was carefully tested for accessibility. Originally had these as plain text links, but adding the subtle hover effects really helped with engagement metrics
+                  </p>
+                  <h2> Design Choices </h2>
+                  <p> 
+                    The overall hero section with that cosmic background was a bit of a gamble - wanted to push beyond the traditional Pokémon aesthetic while keeping it feeling on-brand. The purple and blue nebula effects create this sense of mystery and discovery that really ties into the "Welcome to Pokemon World" messaging
+                  </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card">
+                <div class="card-image">
+                    <img src="../images/FinalWireframes/REGISF.png" alt="Wireframe 1">
+                </div>
+                <div class="card-text">
+                    <h2>Annotation 1 (Trainer Name Field)</h2>
+                    <p>
+                        Added a little info icon here to help users understand what makes a valid trainer name. I learned from user testing that new trainers weren't sure if they should use their real name or a trainer nickname, so this tooltip clarifies things. The placeholder "Ash Ketchum" was a fun touch that immediately communicates what is being looked for
+                    </p>
+                    <br>
+                    <h2> Annotation 2 (Email Validation) </h2>
+                    <p> 
+                        This validation indicator pops up in real-time as users type their email. Went with the bright pink accent to match our brand colors while being noticeable enough to catch attention. The validation happens on-the-fly - much better UX than waiting until form submission to tell users there's an issue
+                    </p>
+                    <br>
+                    <h2> Annotation 3 (Warning Text) </h2>
+                    <p>
+                        That red warning text about password requirements was crucial for reducing failed registration attempts. Made it small but visible, using our error red color. Lists all requirements upfront rather than frustrating users with after-the-fact validation messages
+                    </p>
+                    <br>
+                    <h2> Annotation 4 (Password Visibility Toggle)</h2>
+                    <p> 
+                        The show/hide password toggle was a must-have feature - initially didn't have it, but user testing showed people really wanted to double-check their passwords before submitting. The icon changes state to indicate visibility clearly
+                    </p>
+                    <br>
+                    <h2>Annotation 5 (Phone Number Field Helper) </h2>
+                    <p>
+                        Added the input mask (000-000-000) to make it super clear what format we're looking for. This little detail has significantly reduced input errors. The field automatically formats as users type - one of those small touches that makes the form feel more polished.
+                    </p>
+                    <br>
+                    <h2> Annotation 6 (Form Submission Button) </h2>
+                  <p>
+                    The "Register Now" button is impossible to miss. Added a subtle hover state that makes it feel more interactive. The Google Sign-in option right next to it gives users a quick alternative if they don't want to fill out the whole form.
+                  </p>
+                  <br>
+                  <h2> Annotation 7 (Success State) </h2>
+                  <p>
+                    That green checkmark success state with the "Continue" button was a late addition - found that users needed clearer confirmation that their registration worked. The animation here gives it a bit of personality without being too playful for a registration flow.
+                  </p>
+                </div>
+            </div>
+            <hr>
+            <div class="card">
+                <div class="card-image">
+                    <img src="../images/FinalWireframes/THEORYF.png" alt="Wireframe 1">
+                </div>
+                <div class="card-text">
+                    <h2>Annotation 1 (Selected Navigation State)</h2>
+                    <p>
+                        That blue highlight on "Essay" in the left sidebar indicates the current section. Went with this color to contrast nicely against our signature Pokémon red background while still feeling on-brand. The rounded corners on these nav items were inspired by the classic Pokédex design - a little nostalgic touch that works well with the modern UI.
+                    </p>
+                    <br>
+                    <h2>Annotation 2 (Action Button - View Essay)</h2>
+                    <p>
+                        The "View Essay" button is one of our primary interaction points. Styled it in that distinctive blue to maintain consistency with our interaction design language. Added a subtle hover effect that makes it feel more interactive and inviting. </p>
+                        <br>
+                        <h2>Annotation 3 (Action Button - New Tab)</h2>
+                    <p>
+                        The consistent styling with our other buttons helps maintain visual hierarchy while offering different functionality. </p>
+                    <br>
+                    <h2>Annotation 4 (Action Button - Download)</h2>
+                    <p>
+                        The download PDF option rounds out our content accessibility trio. All these buttons use the same blue color scheme but with distinctive icons to make their functions immediately clear. The hover states include a small scale animation to provide visual feedback.</p>
+                  
                 </div>
             </div>
         </div>
