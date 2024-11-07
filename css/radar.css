@@ -1,0 +1,138 @@
+/* General Styling */
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+#team-builder-section {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50vh; /* Full viewport height */
+    background-color: #f9f9f9;
+    box-sizing: border-box;
+}
+
+#team-builder {
+    display: flex;
+    flex-direction: column;
+    width: 55%;
+    height: 100%; /* Full height of container */
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-sizing: border-box;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+#team-builder h2 {
+    margin-top: 0;
+    font-size: 1.8rem;
+    color: #333;
+}
+
+#pokemon-selector {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+#pokemon-input {
+    width: 75%;
+    padding: 10px;
+    font-size: 16px;
+    margin-right: 10px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+}
+
+#add-pokemon {
+    padding: 10px 16px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 25px;
+    background-color: #0078ff;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+#add-pokemon:hover {
+    background-color: #005bb5;
+}
+
+#selected-team {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+#team-list {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 20px;
+    overflow-y: auto;
+    max-height: 200px; /* Restrict the height for better scrollability */
+}
+
+#team-list li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    background-color: #e7f1ff;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#team-list button {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s;
+}
+
+#team-list button:hover {
+    background-color: #c0392b;
+}
+
+#analyze-team {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 25px;
+    transition: background-color 0.3s;
+    align-self: center;
+}
+
+#analyze-team:hover {
+    background-color: #218838;
+}
+
+/* Radar Chart Container */
+#radar-chart-container {
+    width: 45%;
+    height: 100%; /* Full height of container */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    
+    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+}
+
+#radar-chart {
+    width: 100%;
+    height: 100%;
+}

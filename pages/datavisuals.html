@@ -9,6 +9,8 @@
     <script src="../js/script.js" defer></script>
     <script src="../js/app.js" defer></script>
     <script src="https://d3js.org/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="../css/radar.css" />
+            <script src="../js/radar.js" defer></script>
 </head>
 <body>
     <header id="navbar">
@@ -19,7 +21,7 @@
         <nav></nav>
         <img src="../images/Loading.gif" alt="Profile Icon" class="profile-icon">
     </header>
-
+ 
     <main>
         <section id="hero">
             <h1>Pokémon Data Explorer</h1>
@@ -93,9 +95,36 @@
                         <li>Filter types by using the checkboxes provided. Selecting a checkbox will display only the types you are interested in.</li>
                     </ul>
                     <p>This interactive chart allows you to explore the different Pokémon types and learn how common each type is in the Pokémon world.</p>
+            </div>
+            </div>
+            
+            <!-- Link to Radar CSS and JS Files -->
+            
+        </section>
+        <section id="team-builder-section">
+            <div id="team-builder">
+                <h2>Team Builder & Strength Analyzer</h2>
+                <p>Select up to six Pokémon to analyze your team's stats and type coverage.</p>
+        
+                <div id="pokemon-selector">
+                    <input type="text" id="pokemon-input" placeholder="Enter Pokémon name" />
+                    <button id="add-pokemon">Add Pokémon</button>
+                </div>
+        
+                <div id="selected-team">
+                    <h3>Your Team</h3>
+                    <ul id="team-list"></ul>
+                    <button id="analyze-team">Analyze Team</button>
                 </div>
             </div>
+        
+            <div id="radar-chart-container">
+                <svg id="radar-chart"></svg>
+            </div>
         </section>
+        
+        
+        
     </main>
 
     <footer>

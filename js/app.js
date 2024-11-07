@@ -192,7 +192,7 @@ async function fetchEvolutionChain(pokemonName) {
 async function drawEvolutionChain(chain) {
     evolutionChart.selectAll("*").remove();
 
-    const width = 1200, height = 600; // Increased size for more space
+    const width = 1200, height = 400; // Increased size for more space
     const svg = evolutionChart.append("svg")
         .attr("width", width)
         .attr("height", height)
@@ -227,7 +227,7 @@ async function drawEvolutionChain(chain) {
     await buildChain(chain);
 
     const simulation = d3.forceSimulation(nodes)
-        .force("link", d3.forceLink(links).id(d => d.name).distance(150))
+        .force("link", d3.forceLink(links).id(d => d.name).distance(200))
         .force("charge", d3.forceManyBody().strength(-200))
         .force("x", d3.forceX((d, i) => 100 + i * 150).strength(1))
         .force("y", d3.forceY(height / 2).strength(1));
@@ -240,12 +240,12 @@ async function drawEvolutionChain(chain) {
         .append("path")
         .attr("fill", "none")
         .attr("stroke", "#999")
-        .attr("stroke-width", 2)
+        .attr("stroke-width", 3)
         .attr("marker-end", "url(#arrowhead)");
 
     svg.append("defs").append("marker")
         .attr("id", "arrowhead")
-        .attr("viewBox", "-0 -5 10 10")
+        .attr("viewBox", "-0 -200 200 200")
         .attr("refX", 20)
         .attr("refY", 0)
         .attr("orient", "auto")
@@ -387,7 +387,7 @@ window.onclick = function(event) {
         for (let i = 0; i < dropdowns.length; i++) {
             const openDropdown = dropdowns[i];
             if (openDropdown.classList.contains('show')) {
-                openDropdown.classList.remove('show');
+                openDropdown.classList.remove('show'); 
             }
         }
     }
