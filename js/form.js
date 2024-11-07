@@ -56,9 +56,9 @@ function validateField(id) {
             error.textContent = 'Password must be at least 8 characters, include uppercase, lowercase, a number, and a special character';
             break;
         case 'phone':
-            isValid = /^\d{8}$/.test(input.value);
-            error.textContent = 'Phone number must be 9 digits';
-            updateCharacterCount('phone', input.value.length, 9);
+            isValid = /^\d{10}$/.test(input.value);
+            error.textContent = 'Phone number must be 10 digits';
+            updateCharacterCount('phone', input.value.length, 10);
             break;
     }
 
