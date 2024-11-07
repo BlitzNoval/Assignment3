@@ -291,6 +291,18 @@ body {
     background-color: #FF0000; /* Red color on hover */
 }
 
+.scroll-down-container {
+    display: flex;
+    justify-content: center;
+    margin-top: -10px;
+}
+
+.scroll-down-gif {
+    width: 200px; /* Adjust size as needed */
+    height: auto;
+}
+
+
 
 /* Default Styles for Desktop */
 body {
