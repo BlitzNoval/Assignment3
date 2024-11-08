@@ -2,7 +2,6 @@
 body, html {
     margin: 0;
     padding: 0;
-    height: 100%;
     font-family: Arial, sans-serif;
     background-color: #f9f9f9;
 }
@@ -10,27 +9,19 @@ body, html {
 #team-builder-section {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    height: 50vh; /* Full viewport height */
-    background-color: #f9f9f9;
-    box-sizing: border-box;
+    padding: 20px;
+    background-color: #fff;
 }
 
 #team-builder {
-    display: flex;
-    flex-direction: column;
     width: 55%;
-    height: 100%; /* Full height of container */
-    background-color: #f9f9f9;
     padding: 20px;
-    box-sizing: border-box;
+    background-color: #f2f2f2;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    overflow-y: auto;
 }
 
 #team-builder h2 {
-    margin-top: 0;
     font-size: 1.8rem;
     color: #333;
 }
@@ -64,75 +55,100 @@ body, html {
     background-color: #005bb5;
 }
 
-#selected-team {
-    flex-grow: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
 #team-list {
     list-style: none;
-    padding-left: 0;
-    margin-bottom: 20px;
+    padding: 0;
+    max-height: 200px;
     overflow-y: auto;
-    max-height: 200px; /* Restrict the height for better scrollability */
 }
 
 #team-list li {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    margin-bottom: 10px;
-    background-color: #e7f1ff;
     padding: 10px;
+    margin: 5px 0;
+    background-color: #e7f1ff;
     border-radius: 8px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 #team-list button {
     background-color: #e74c3c;
     color: #fff;
     border: none;
-    padding: 5px 10px;
     border-radius: 25px;
     cursor: pointer;
-    font-size: 14px;
-    transition: background-color 0.3s;
-}
-
-#team-list button:hover {
-    background-color: #c0392b;
 }
 
 #analyze-team {
     background-color: #28a745;
     color: #fff;
-    border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 25px;
-    transition: background-color 0.3s;
     align-self: center;
+    transition: background-color 0.3s;
 }
 
 #analyze-team:hover {
     background-color: #218838;
 }
 
-/* Radar Chart Container */
+/* Radar Chart */
 #radar-chart-container {
     width: 45%;
-    height: 100%; /* Full height of container */
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 20px;
     background-color: #f9f9f9;
-    
-    box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
 }
 
 #radar-chart {
     width: 100%;
     height: 100%;
+}
+
+
+#stats-section .chart-container {
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
+    border: 2px solid #CC0000;
+}
+
+.tooltip {
+    position: absolute;
+    text-align: center;
+    width: auto;
+    height: auto;
+    padding: 8px;
+    font-size: 0.9em;
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    pointer-events: none;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    color: #333;
+}
+
+.legend circle {
+    cursor: pointer;
+}
+
+.legend text {
+    cursor: pointer;
+    font-size: 0.9em;
+    fill: #333;
+}
+
+.controls {
+    margin-bottom: 10px;
+    font-size: 1em;
+    color: #333;
+}
+
+#speedSlider {
+    width: 200px;
+    margin-left: 10px;
 }

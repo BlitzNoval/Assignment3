@@ -102,26 +102,29 @@
             <!-- Link to Radar CSS and JS Files -->
             
         </section>
-        <section id="team-builder-section">
-            <div id="team-builder">
-                <h2>Team Builder & Strength Analyzer</h2>
-                <p>Select up to six Pokémon to analyze your team's stats and type coverage.</p>
-        
-                <div id="pokemon-selector">
-                    <input type="text" id="pokemon-input" placeholder="Enter Pokémon name" />
-                    <button id="add-pokemon">Add Pokémon</button>
+        <section id="stats-section" class="data-section">
+            <div class="content-left">
+                <h2>Speed vs. Attack</h2>
+                <p>Explore the relationship between Pokémon's Speed and Attack stats.</p>
+                <div class="filler-text">
+                    <h3>Scatter Plot</h3>
+                    <p>This chart shows the Speed and Attack stats of various Pokémon. Each point represents a Pokémon, with its position based on Speed (x-axis) and Attack (y-axis). The color of each point corresponds to the Pokémon's primary type.</p>
+                    <p>Use the chart to explore how Pokémon types might impact Speed and Attack!</p>
+                    <div class="controls">
+                        <label>Adjust Speed Limit Parameters: <span id="speedLabel">100</span></label>
+                        <input type="range" id="speedSlider" min="10" max="120" value="100">
+                    </div>
+                   <b>  <p>NB! REFRESH PAGE TO SEE ANIMATIONS</p></b>
                 </div>
-        
-                <div id="selected-team">
-                    <h3>Your Team</h3>
-                    <ul id="team-list"></ul>
-                    <button id="analyze-team">Analyze Team</button>
+                
+            </div>
+            <div class="content-right">
+                <div class="chart-container">
+                    <svg id="statsChart" width="600" height="400"></svg>
                 </div>
             </div>
-        
-            <div id="radar-chart-container">
-                <svg id="radar-chart"></svg>
-            </div>
+            
+            
         </section>
         
         
