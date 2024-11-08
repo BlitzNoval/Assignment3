@@ -87,6 +87,8 @@ p, ul {
     margin-bottom: 10px;
 }
 
+
+
 .input-group, .button-group {
     display: flex;
     margin-top: 20px;
@@ -269,4 +271,13 @@ footer a:hover {
 
 #backToTop:hover {
     background-color: #FF0000; /* Red color on hover */
+}
+
+
+.p2 {
+    font-size: 1.15em;
+    line-height: 1.8;
+    color: #ffffff;
+    margin-bottom: 10px;
+    font-family: 'Roboto', sans-serif;
 }
