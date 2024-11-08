@@ -22,3 +22,9 @@ function showPDF() {
     iframe.src = '../essays/Essay.pdf'; // Change this to the correct path
     document.getElementById('pdf-viewer').style.display = 'block';
 } 
+
+function showPDF2() {
+    const iframe = document.querySelector('#pdf-viewer2 iframe');  // Changed from iframe2 to iframe
+    iframe.src = '../essays/Essay2.pdf';
+    document.getElementById('pdf-viewer2').style.display = 'block';
+}
