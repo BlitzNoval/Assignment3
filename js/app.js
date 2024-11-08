@@ -392,3 +392,11 @@ window.onclick = function(event) {
         }
     }
 }
+
+window.addEventListener("DOMContentLoaded", () => {
+    // Show the loading overlay for 3 seconds
+    setTimeout(() => {
+        document.getElementById("loading-overlay").style.display = "none";
+        document.getElementById("main-content").style.visibility = "visible"; // Make main content visible
+    }, 2000); // 3 seconds
+});
