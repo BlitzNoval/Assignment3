@@ -1,4 +1,4 @@
-// Function to dynamically inject the navbar
+// Main script.js file
 function injectNavbar() {
     const pages = [
         { name: "Home", link: "./home.html" },
@@ -9,10 +9,15 @@ function injectNavbar() {
 
     const navBar = document.querySelector('header nav');
     let navHTML = '<ul id="dynamic-nav">';
+    
+    // Get the current page filename
+    const currentPage = window.location.pathname.split('/').pop();
 
     pages.forEach(page => {
-        // Highlight the active page
-        const isActive = window.location.pathname.includes(page.link) ? 'active' : '';
+        // Extract filename from page.link for comparison
+        const pagePath = page.link.split('/').pop();
+        // Check if this is the current page
+        const isActive = currentPage === pagePath ? 'active' : '';
         navHTML += `<li><a href="${page.link}" class="${isActive}">${page.name}</a></li>`;
     });
 
@@ -20,7 +25,6 @@ function injectNavbar() {
     navBar.innerHTML = navHTML;
 }
 
-// Function to dynamically inject the footer
 function injectFooter() {
     const footerHTML = `
         <footer class="footer">
@@ -31,7 +35,7 @@ function injectFooter() {
                 <div class="footer-links">
                     <h3>Quick Links</h3>
                     <ul>
-                          <li><a href="./home.html">Home</a></li>
+                        <li><a href="./home.html">Home</a></li>
                         <li><a href="./theory.html">Theory</a></li>
                         <li><a href="./datavisuals.html">Data Visuals</a></li>
                         <li><a href="./design.html">Design</a></li>
@@ -47,8 +51,8 @@ function injectFooter() {
                 </div>
                 <div class="footer-newsletter">
                     <h3>Subscribe to Our Newsletter</h3>
-                    <form>
-                        <input type="email" placeholder="Enter your email">
+                    <form id="newsletter-form">
+                        <input type="email" placeholder="Enter your email" required>
                         <button type="submit">Subscribe</button>
                     </form>
                 </div>
@@ -61,9 +65,50 @@ function injectFooter() {
 
     const body = document.querySelector('body');
     body.insertAdjacentHTML('beforeend', footerHTML);
+
+    // Add newsletter form submission handler
+    const newsletterForm = document.getElementById('newsletter-form');
+    if (newsletterForm) {
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            alert(`Thank you for subscribing with: ${email}`);
+            this.reset();
+        });
+    }
 }
 
+// Handle navigation click events
+function handleNavigation() {
+    const navLinks = document.querySelectorAll('#dynamic-nav a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+            // Remove active class from all links
+            navLinks.forEach(l => l.classList.remove('active'));
+            // Add active class to clicked link
+            this.classList.add('active');
+        });
+    });
+}
+
+// Initialize everything when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     injectNavbar();
     injectFooter();
+    handleNavigation();
+});
+
+// Handle browser back/forward buttons
+window.addEventListener('popstate', () => {
+    const currentPage = window.location.pathname.split('/').pop();
+    const navLinks = document.querySelectorAll('#dynamic-nav a');
+    
+    navLinks.forEach(link => {
+        const pagePath = link.getAttribute('href').split('/').pop();
+        if (pagePath === currentPage) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
 });

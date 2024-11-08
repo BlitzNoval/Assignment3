@@ -16,6 +16,7 @@ body {
     align-items: center;
 }
 
+/* Hero Section */
 #hero {
     background: linear-gradient(135deg, #CC0000 0%, #FF6666 100%);
     color: white;
@@ -41,7 +42,7 @@ h1 {
 .data-section {
     background-color: white;
     margin: 1px;
-    border-radius: px;
+    border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.15);
     overflow: hidden;
     display: flex;
@@ -51,11 +52,8 @@ h1 {
 }
 
 .data-section:hover {
-   
     box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
 }
-
-
 
 .content-left, .content-right {
     width: 48%;
@@ -86,8 +84,6 @@ p, ul {
     color: #444;
     margin-bottom: 10px;
 }
-
-
 
 .input-group, .button-group {
     display: flex;
@@ -120,22 +116,21 @@ input[type="text"] {
 .chart-container {
     background-color: #f9f9f9;
     border-radius: 10px;
-    padding: 120px;
+    padding: 20px;
     box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.1);
     border: 2px solid #CC0000;
 }
 
 svg {
-    max-width: 200%;
+    max-width: 100%;
     height: auto;
 }
 
 footer {
     background-color: #ffffff;
-    color: white;
+    color: #333;
     text-align: center;
     padding: 20px;
-    margin-top: 0px;
 }
 
 footer a {
@@ -149,13 +144,55 @@ footer a:hover {
 
 /* Responsive Styles */
 @media (max-width: 768px) {
+    h1 {
+        font-size: 2em;
+    }
+
+    #hero p {
+        font-size: 1em;
+    }
+
     .data-section {
         flex-direction: column;
-        padding: 30px;
+        padding: 20px;
     }
 
     .content-left, .content-right {
         width: 100%;
+        margin-bottom: 20px;
+    }
+
+    .chart-container {
+        padding: 20px;
+    }
+
+    .input-group, .button-group {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    input[type="text"] {
+        border-radius: 5px;
+        margin-bottom: 10px;
+    }
+
+    .poke-button {
+        padding: 10px 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 {
+        font-size: 1.8em;
+    }
+
+    #hero p {
+        font-size: 0.9em;
+    }
+
+    .poke-button {
+        font-size: 14px;
+        padding: 8px 10px;
     }
 }
 
@@ -244,7 +281,7 @@ footer a:hover {
 
 .clear-button {
     background-color: #333;
-    color: rgb(0, 0, 0);
+    color: #000;
     margin-right: 10px;
     font-weight: bold;
 }
@@ -259,20 +296,19 @@ footer a:hover {
     right: 20px;
     padding: 10px 15px;
     font-size: 14px;
-    background-color: #FFCB05; /* Yellow color for Pokémon theme */
+    background-color: #FFCB05;
     color: #000;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    display: none; /* Hidden by default */
+    display: none;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
     transition: opacity 0.3s;
 }
 
 #backToTop:hover {
-    background-color: #FF0000; /* Red color on hover */
+    background-color: #FF0000;
 }
-
 
 .p2 {
     font-size: 1.15em;
@@ -281,7 +317,6 @@ footer a:hover {
     margin-bottom: 10px;
     font-family: 'Roboto', sans-serif;
 }
-
 
 #loading-overlay {
     position: absolute;
@@ -294,15 +329,14 @@ footer a:hover {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    z-index: 10; /* Ensure it overlays the main content */
+    z-index: 10;
 }
 
 .loading-gif {
-    width: 100px; /* Adjust as needed */
+    width: 100px;
     margin-bottom: 10px;
 }
 
-#main-content { /* Add this style if needed to position main content */
+#main-content {
     visibility: hidden;
 }
-
