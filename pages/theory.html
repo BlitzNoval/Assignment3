@@ -31,7 +31,8 @@
             <div class="pokedex-frame">
                 <div class="pokedex-content">
                     <div class="pokedex-controls">
-                        <button class="poke-button" onclick="showSection('essay')">Essay</button>
+                        <button class="poke-button" onclick="showSection('essay')">Essay 1 </button>
+                        <button class="poke-button" onclick="showSection('essay2')">Essay 2 </button>
                         <button class="poke-button" onclick="showSection(1)">Reflections</button>
                         <button class="poke-button" onclick="showSection(2)">D3 Rationales</button>
                         <button class="poke-button" onclick="showSection(3)">Prep Work</button>
@@ -134,8 +135,25 @@
                         </div>
                         
                         <div id="section-essay" class="content-section" style="display:none;">
-                            <h2>Essay</h2>
-                            <p>Your essay on Pokémon design theory will be displayed here.</p>
+                            <h2>Essay - Assignment 2</h2>
+                            <p>Critical Analysis Essay - This assignment challenged me to critically analyse the effectiveness of data visualization techniques employed in a data journalism project <a href="https://pudding.cool/2023/09/invisible-epidemic/"> The Pudding Data Journalism </a>
+                                <br> 
+                                <br>  I explored how interactive visualizations, combined with narrative elements, contribute to (or detract from) the communication of complex information. This analysis drew upon key concepts covered in the course, including data visualization principles, UI/UX design, and the role of interactivity in shaping user understanding.</p>
+                            <div class="button-group">
+                                <button class="poke-button" onclick="showPDF()">View Essay</button>
+                                <a href="../essays/Essay.pdf" target="_blank" class="poke-button">Open in New Tab</a>
+                                <a href="../essays/Essay.pdf" download class="poke-button">Download PDF</a>
+                            </div>
+                            <div id="pdf-viewer" style="display:none;">
+                                <iframe src="" width="100%" height="600px" frameborder="0"></iframe>
+                            </div>
+                        </div>
+                        
+                        <div id="section-essay2" class="content-section" style="display:none;">
+                            <h2>Exam Essay - Critical Reflection Essay </h2>
+                            <p>Critical Analysis Essay - This assignment challenged me to critically analyse the effectiveness of data visualization techniques employed in a data journalism project <a href="https://pudding.cool/2023/09/invisible-epidemic/"> The Pudding Data Journalism </a>
+                                <br> 
+                                <br>  I explored how interactive visualizations, combined with narrative elements, contribute to (or detract from) the communication of complex information. This analysis drew upon key concepts covered in the course, including data visualization principles, UI/UX design, and the role of interactivity in shaping user understanding.</p>
                             <div class="button-group">
                                 <button class="poke-button" onclick="showPDF()">View Essay</button>
                                 <a href="../essays/Essay.pdf" target="_blank" class="poke-button">Open in New Tab</a>
